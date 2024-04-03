@@ -10,7 +10,7 @@
     <div class="contrainer">
         <div class="box form-box">
             <header id="sign-up"> SIGN UP</header>
-            <form action="" method="post">
+            <form action="sign_up.php" method="post">
                 <div class="field input">
                     <label for="UserName">Name</label>
                     <input type="text" name="UserName" id="UserName" required>
@@ -22,30 +22,34 @@
 
                 </div>
                 <div class="field input">
-                    <label for="password">Password</label>
+                    <label for="Password">Password</label>
                     <input type="password" name="Password" id="Password" required>
             
                 </div>
                 <div class="field input">
-                    <label for="password">Enter Password</label>
-                    <input type="password" name="Password" id="Enter_Password" required>
+                    <label for="ConfirmPassword">Enter Password</label>
+                    <input type="password" name="ConfirmPassword" id="Enter_Password" required>
             
                 </div>
-                <div class="field">
+                
                     
-                    <input type="submit" name="Login" class="btn-create" value="Create Account" required>
+                    <input type="submit" name="submit" class="btn-create" value="Create Account">
             
-                </div>
-                <div class="link sign-up">
-                    
-                   <a href="./login.html">Login</a>
-            
-                </div>
+                
+                
             </form>
+
+            <div class="link login">
+                    
+                <a href="./login.html">Login</a>
+         
+             </div>
 
         </div>
 
     </div>
+
+    
     
 </body>
 </html>

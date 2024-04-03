@@ -10,7 +10,7 @@
     <div class="contrainer">
         <div class="box form-box">
             <header id="login"> LOGIN</header>
-            <form action="login.php" method="post">
+            <form action="" method="post">
                 <div class="field input">
                     <label for="Email">Email</label>
                     <input type="email" name="Email" id="Email" required>
