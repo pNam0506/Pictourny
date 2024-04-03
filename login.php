@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div class="contrainer">
+    <div class="container">
         <div class="box form-box">
+            <?php
+                include("./config.php");
+                if(isset($_POST['submit'])){
+                $users_Email = mysqli_real_escape_string($conn,$_POST['Email']);
+                $users_Password = mysqli_real_escape_string($conn,$_POST['Password']);
+
+                $result = mysqli_query($conn,"SELECT * FROM sign_up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
+                $row = mysqli_fetch_assoc($result);
+                if(is_array($row) && !empty($row)){
+                    $_SESSION['valid'] = $row['users_Email'];
+                    $_SESSION['username'] = $row['users_Name'];
+        
+                } else {
+                    echo "Invalid email or password. Please try again.";
+                }
+                if(isset($_SESSION['valid'])){
+                    header("location: home.php");
+                }
+            }else{
+    
+
+    ?>
+
             <header id="login"> LOGIN</header>
             <form action="" method="post">
                 <div class="field input">
@@ -17,31 +42,34 @@
 
                 </div>
                 <div class="field input">
-                    <label for="Email">Password</label>
+                    <label for="Password">Password</label>
                     <input type="password" name="Password" id="Password" required>
-            
+
                 </div>
                 <div class="field">
-                    
-                    <input type="submit" name="Login" class="btn" value="Login" required>
-            
+
+                    <input type="submit" name="submit" class="btn" value="Login" required>
+
                 </div>
                 <div class="link sign-up">
-                    
-                   <a href="./sign_up.html">Sign Up</a>
-            
+
+                    <a href="./sign_up.html">Sign Up</a>
+
                 </div>
                 <div class="link forgot-password">
-                    
+
                     <a href="">Forgot Password</a>
-             
-                 </div>
+
+                </div>
 
             </form>
 
         </div>
 
+        <?php }?>
+
     </div>
-    
+
 </body>
+
 </html>
