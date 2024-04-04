@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styleAnime.css">
     <title>Home</title>
 </head>
 <body>
-    <h1>Hello!</h1>
+
+    <div class="container">
+        <div id="test">
+            <img src="./Rectangle 31.png"/>
+    
+        </div>
+
+
+    </div>
+    
+    
 </body>
 </html>

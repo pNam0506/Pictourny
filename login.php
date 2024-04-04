@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div class="background">
     <div class="container">
         <div class="box form-box">
             <?php
@@ -69,6 +70,8 @@
         <?php }?>
 
     </div>
+
+</div>
 
 </body>
 

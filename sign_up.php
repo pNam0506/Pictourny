@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+<div class="background">
     <div class="container">
         <div class="box form-box">
             
@@ -37,7 +38,7 @@
                                 <p>Registration successful</p>
                             </div> <br>";
 
-                        echo "<a href=''><button class='btn'>Login Now</button></a>";
+                        echo "<a href='home.php'><button class='btn'>Login Now</button></a>";
                     }
                 }
             } else {
@@ -70,5 +71,6 @@
             <?php } ?>
         </div>
     </div>
+</div>
 </body>
 </html>
