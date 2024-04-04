@@ -11,5 +11,20 @@ create table Sign_Up(
     
     
 );
+alter table Sign_Up
+add reset_token_hash varchar(64) default null;
+
+alter table Sign_Up
+add reset_token_expires_at datetime default null;
+
+ALTER TABLE Sign_Up
+DROP COLUMN users_Enter_Password;
+
+alter table Sign_Up
+add unique(reset_token_hash);
+
+
+
 select * from Sign_up;
+
 
