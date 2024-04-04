@@ -36,6 +36,7 @@
     ?>
 
             <header id="login"> LOGIN</header>
+            <img src="./Rectangle 31.png" id="logo">
             <form action="" method="post">
                 <div class="field input">
                     <label for="Email">Email</label>

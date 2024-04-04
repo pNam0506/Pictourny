@@ -41,8 +41,18 @@
        border-radius: 20px;
 
     }
-    #login,#sign-up{
-        margin-left: 30%;
+    #login{
+        position: relative;
+        left: 33%;
+        right: 30%;
+        top: -30px;
+        font-size: 25px;
+    }
+    #sign-up{
+        position: relative;
+        left: 29%;
+        right: 30%;
+        top: -30px;
         font-size: 25px;
     }
     #Email,#Password,#Enter_Password,#UserName{
@@ -55,7 +65,7 @@
     }
     .form-box form .field{
         display: flex;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         flex-direction: column;
 
     }
@@ -78,6 +88,18 @@
         margin-left: 20%;
     }
   
-    
+#logo{
+      width: 100px;
+      position: relative;
+      left: 30%;
+      right: 25%;
+      top: -15px;
+
+    }
+
+.forgot-password{
+    position: relative;
+    top: 15px;
+}
 
     

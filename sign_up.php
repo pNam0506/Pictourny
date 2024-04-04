@@ -44,6 +44,7 @@
             } else {
             ?>
             <header id="sign-up"> SIGN UP</header>
+            <img src="./Rectangle 31.png" id="logo">
             <form action="" method="post">
                 <div class="field input">
                     <label for="UserName">Name</label>
