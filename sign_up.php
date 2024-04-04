@@ -24,6 +24,7 @@
                     echo "<div class='message'>
                             <p>Passwords do not match, please try again</p>
                         </div> <br>";
+                        echo "<a href=''><button class='btn-back'>back</button></a>";
                 } else {
                     $verify_query = mysqli_query($conn,"SELECT users_Email FROM sign_up WHERE users_Email = '$users_Email'");
 
@@ -31,6 +32,7 @@
                         echo "<div class='message'>
                                 <p>This email is already registered, please try another one</p>
                             </div> <br>";
+                            echo "<a href=''><button class='btn-back'>back</button></a>";
                     } else {
                         mysqli_query($conn,"INSERT INTO sign_up(users_Name,users_Email,users_Password) VALUES('$users_Name','$users_Email','$users_Password')") or die("Error Occurred");
 
@@ -38,7 +40,7 @@
                                 <p>Registration successful</p>
                             </div> <br>";
 
-                        echo "<a href='home.php'><button class='btn'>Login Now</button></a>";
+                        echo "<a href='home.php'><button class='btn'>Let's go!</button></a>";
                     }
                 }
             } else {

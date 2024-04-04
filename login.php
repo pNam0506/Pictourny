@@ -25,7 +25,8 @@
                     $_SESSION['username'] = $row['users_Name'];
         
                 } else {
-                    echo "Invalid email or password. Please try again.";
+                    echo "<p>Invalid email or password. Please try again.</p></br>";
+                    echo "<a href=''><button class='btn-back'>back</button></a>";
                 }
                 if(isset($_SESSION['valid'])){
                     header("location: home.php");
