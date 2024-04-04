@@ -16,6 +16,17 @@
 
 
     </div>
+    <script>
+       
+        window.onload = function() {
+            setTimeout(redirectToNewPage, 3000);
+        };
+
+        function redirectToNewPage() {
+            
+            window.location.href = "new_page.html"; 
+        }
+    </script>
     
     
 </body>

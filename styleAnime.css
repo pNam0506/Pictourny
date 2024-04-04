@@ -38,7 +38,7 @@ body{
     width: 100%;
     height: 100%;
     background-color:rgba(79, 30, 4, 0.54);
-    z-index: -1; /* เลื่อนไปด้านหลังของเนื้อหา */
+    z-index: -1; 
 }
 
   
