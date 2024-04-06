@@ -25,6 +25,6 @@ add unique(reset_token_hash);
 
 
 
-select * from Sign_up;
+select * from Sign_Up;
 
 
