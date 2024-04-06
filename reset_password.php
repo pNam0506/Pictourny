@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Forgot Password</title>
 </head>
 <body>
-    <h2>Forgot Password</h2>
-
+<div class="background">
+        <div class="container">
+            <div class="box form-box">
+    
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -53,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             try {
                 $mail->send();
-                echo "Message sent, please check your inbox";
+                echo "<div class='message'>
+                <p>Message sent, please check your inbox</p>
+            </div><br>";
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
             }
@@ -61,16 +66,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Failed to update reset token.";
         }
     } else {
-        echo "No user found with that email address.";
+        echo "<div class='message'>
+        <p>No user found with that email address.</p>
+    </div><br>";
     }
-}
+}else{
 ?>
 
-    <form method="post" action="">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-        <input type="submit" value="Reset Password">
-    </form>
+
+                <header id="forgot-password"> FORGOT PASSWORD</header>
+                    <img src="./Rectangle 31.png" id="logo">
+                
+                <form action="./reset_password.php" method="post">
+                    <div class="field input">
+                        <label for="Email">Email</label>
+                        <input type="email" name="email" id="Email" required>
+
+                    </div>
+                
+                    <div class="field">
+                        
+                        <input type="submit" name="submit" class="btn" value="sent" required>
+                
+                    </div>
+                </form>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+   
 </body>
 </html>
     
