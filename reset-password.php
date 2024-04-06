@@ -32,24 +32,35 @@ if ($user === null) {
 
 if (strtotime($user["reset_token_expires_at"]) <= time()) {
     echo "
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Reset Password</title>
-</head>
-<body>
-    
-    <form method='post' action='./process_reset_password.php'>
-    <!-- Include a hidden input field to send the token value -->
-    <input type='hidden' name='token' value='$token'>
-    <label for='password'>New Password:</label>
-    <input type='password' name='new-password' id='password' required><br><br>
+            <!DOCTYPE html>
+        <html>
+        <head>
+        <link rel='stylesheet' href='./style.css'>
+            <title>Reset Password</title>
+        </head>
+        <body>
 
-    <label for='confirm_password'>Confirm Password:</label>
-    <input type='password'name='new-confirm_password' id='confirm_password' required><br><br>
+        <div class='background'>
+                <div class='container'>
+                    <div class='box form-box'>
+            <form method='post' action='./process_reset_password.php'>
+            <!-- Include a hidden input field to send the token value -->
+            <input type='hidden' name='token' value='$token'>
+            <div class='field input'>
+            <label for='password'>New Password</label>
+            <input type='password' name='new-password' id='Password' required><br><br>
+            </div>
 
-    <input type='submit' value='Reset Password'>
-</form>
+            <div class='field input'>
+            <label for='confirm_password'>Confirm Password</label>
+            <input type='password'name='new-confirm_password' id='Password' required><br><br>
+            </div>
+
+            <input type='submit' class='new-btn' value='Reset Password'>
+        </form>
+    </div>
+</div>
+</div>
 </body>
 </html>
 ";
