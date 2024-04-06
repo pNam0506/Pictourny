@@ -38,7 +38,7 @@
 
             <header id="login"> LOGIN</header>
             <img src="./Rectangle 31.png" id="logo">
-            <form action="" method="post">
+            <form action="./index.php" method="post">
                 <div class="field input">
                     <label for="Email">Email</label>
                     <input type="email" name="Email" id="Email" required>
