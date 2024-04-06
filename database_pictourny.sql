@@ -23,6 +23,8 @@ DROP COLUMN users_Enter_Password;
 alter table Sign_Up
 add unique(reset_token_hash);
 
+ALTER TABLE Sign_Up
+MODIFY COLUMN users_Password VARCHAR(1000);
 
 
 select * from Sign_Up;
