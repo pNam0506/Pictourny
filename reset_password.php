@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Password = "jvplssmpdvnaeywc";
             $mail->isHTML(true);
 
-            $mail->setFrom("pinmanee.business@gmail.com");
+            $mail->setFrom("pinmanee.business@gmail.com","Pictureny");
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
             $mail->Body = "Click <a href='http://localhost:3000/Pictourny_code/Pictourny/reset-password.php?token=$token'>here</a> to reset your password.";
