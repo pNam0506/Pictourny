@@ -61,7 +61,7 @@
                 </div>
                 <div class="link forgot-password">
 
-                    <a href="">Forgot Password</a>
+                    <a href="./reset_password.html">Forgot Password</a>
 
                 </div>
 
