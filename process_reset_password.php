@@ -23,13 +23,13 @@ if (!$result) {
 
 $user = $result->fetch_assoc();
 
-if ($user === null) {
+/*if ($user === null) {
     echo "Token not found";
 }
 
 if (strtotime($user["reset_token_expires_at"]) <= time()) {
     echo "Token has expired";
-}
+}*/
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate form data
@@ -38,7 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if passwords match
     if ($users_Password !== $confirm_Password) {
-        echo "<p>Passwords do not match. Please try again.</p>";
+        echo "<!DOCTYPE html>
+        <html>
+        <head>
+        <link rel='stylesheet' href='./style.css'>
+            <title>Reset Password</title>
+        </head>
+        <body>
+        <div class='background'>
+                <div class='container'>
+                    <div class='box form-box'>
+            <form method='post' action=''>
+            <div class='message'>
+            <p>Passwords do not match. Please try again.</p>
+                            </div> <br>
+       ";
+
     } else {
         // Hash the new password
         $hashed_password = password_hash($users_Password, PASSWORD_DEFAULT);
@@ -56,7 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the password was successfully updated
             if ($stmt->affected_rows > 0) {
-                echo "<p>Password reset successfully!</p>";
+                echo "<!DOCTYPE html>
+                <html>
+                <head>
+                <link rel='stylesheet' href='./style.css'>
+                    <title>Reset Password</title>
+                </head>
+                <body>
+                <div class='background'>
+                        <div class='container'>
+                            <div class='box form-box'>
+                    <form method='post' action=''>
+                    <div class='message'>
+                    <p>Password reset successfully!</p>
+                </div> <br>
+               ";
             } else {
                 echo "<p>Failed to reset password. Please try again.</p>";
             }
