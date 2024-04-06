@@ -17,8 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Generate a random password reset token
         $token = bin2hex(random_bytes(32));
 
-        // Update the user's record in the database with the token
-        $update_query = "UPDATE sign_up SET reset_token_hash = '$token' WHERE users_Email = '$email'";
+        // Update the user's record in the database with the token and expiration time
+        $expires_at = date('Y-m-d H:i:s'); // Token expiration time (1 hour from now)
+        $token_hash = hash("sha256", $token);
+        $update_query = "UPDATE sign_up SET reset_token_hash = '$token_hash', reset_token_expires_at = '$expires_at' WHERE users_Email = '$email'";
         mysqli_query($conn, $update_query);
 
         if(mysqli_affected_rows($conn) > 0) {
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->setFrom("pinmanee.business@gmail.com");
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
-            $mail->Body = "Click <a href='http://example.com/reset-password.php?token=$token'>here</a> to reset your password.";
+            $mail->Body = "Click <a href='http://localhost:3000/Pictourny_code/Pictourny/reset-password.php?token=$token'>here</a> to reset your password.";
 
             try {
                 $mail->send();
