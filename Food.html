@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    
+    <style>
+        body {
+            background-color: #4b3a2f; /* ใช้รหัสสีน้ำตาล DarkSlateBrown */
+            font-family: "Roboto", sans-serif; /* ใช้ฟอนต์ Roboto หรือฟอนต์ที่คุณต้องการ */
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar {
+            background-color: #360404; /* สีพื้นหลังของแถบเมนู */
+            overflow: hidden;
+            width: 100%; /* ความกว้างเต็มของหน้าเว็บ */
+            display: flex;
+            justify-content: space-between; /* จัดเรียงเมนูทางซ้ายและทางขวา */
+            align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลาง */
+            padding: 10px 20px; /* เพิ่มช่องว่างรอบเมนู */
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 15px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd; /* สีพื้นหลังเมื่อเม้าส์ไปชี้ */
+            color: black;
+        }
+
+        .search-container {
+            margin-left: auto; /* ให้กล่องค้นหาอยู่ด้านขวา */
+        }
+
+        .search-container input[type=text] {
+            padding: 10px;
+            margin-top: 5px;
+            margin-right: 16px;
+            border: none;
+            font-size: 17px;
+        }
+
+        #uploadedImageContainer {
+            position: relative;
+            margin-top: 60px;
+        }
+
+        #uploadedImage {
+            width: 300px; /* กำหนดความกว้างของรูปภาพ */
+            height: 390px; /* กำหนดความสูงของรูปภาพ */
+            object-fit: cover; /* ปรับขนาดรูปภาพให้เต็มพื้นที่และไม่มีขอบ */
+            border-radius: 15px;
+        }
+
+        /* รูปไอคอนแสดงภาพ */
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        /* ปุ่มชอบและไม่ชอบ */
+        #likeButton {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            bottom: -40px; /* ขยับไอคอนลงด้านล่างของภาพ */
+            left: 25%; /* จัดตำแหน่งไอคอนไปที่กลาง */
+            transform: translateX(300%); /* ย้ายไอคอนให้ตรงกลาง */
+            width: 40px; /* ขนาดของไอคอน */
+            height: auto; /* ความสูงของไอคอนจะถูกปรับเพื่อให้สัดส่วนเท่ากัน */
+        }
+
+        #dislikeButton {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            bottom: -40px; /* ขยับไอคอนลงด้านล่างของภาพ */
+            left: -10%; /* จัดตำแหน่งไอคอนไปที่กลาง */
+            transform: translateX(300%); /* ย้ายไอคอนให้ตรงกลาง */
+            width: 40px; /* ขนาดของไอคอน */
+            height: auto; /* ความสูงของไอคอนจะถูกปรับเพื่อให้สัดส่วนเท่ากัน */
+        }
+
+        #likeButton:hover, #dislikeButton:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        <a href="profile.html" class="profile-icon"> PROFILE </a>
+        <a href="pictourny.html"> Pictourny </a>
+        <a href="gallery.html"> Gallery </a>
+        <a href="top10.html"> Top 10 </a>
+        <a href="upload_pic.html"> Upload Pic </a>
+    </div>
+        
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="ค้นหา.." name="search">
+                <button type="submit"> search </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="uploadedImageContainer">
+        <img id="uploadedImage" src="#" alt="Uploaded Image">
+        <button id="likeButton"><img src="heart.png" alt="Like" class="icon"> </button>
+        <button id="dislikeButton"><img src="dislike.png" alt="Dislike" class="icon">  </button>
+    </div>
+
+    <script>
+        // Array ของ URL ของรูปภาพในแกลเลอรี
+        var imageUrls = [
+            'f2.jpeg',
+            'f3.jpeg',
+            'f4.jpeg',
+            'f1.jpeg',
+            'f5.jpeg',
+            // เพิ่ม URL ของรูปภาพเพิ่มเติมตามต้องการ
+        ];
+
+        var imageElement = document.getElementById('uploadedImage');
+        var likeButton = document.getElementById('likeButton');
+        var dislikeButton = document.getElementById('dislikeButton');
+
+        var currentIndex = 0; // ค่าดัชนีปัจจุบันของรูปภาพที่แสดง
+
+        // แสดงรูปภาพในแกลเลอรี
+        function showImage(index) {
+            imageElement.src = imageUrls[index];
+            currentIndex = index;
+        }
+
+        // โหลดรูปภาพแรกทันทีเมื่อหน้าเว็บโหลดเสร็จ
+        window.onload = function() {
+            showImage(currentIndex);
+        };
+
+        // ปุ่มกดเพื่อแสดงรูปภาพก่อนหน้า
+        likeButton.addEventListener('click', function() {
+            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+            showImage(currentIndex);
+        });
+
+        // ปุ่มกดเพื่อแสดงรูปภาพถัดไป
+        dislikeButton.addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            showImage(currentIndex);
+        });
+    </script>
+</body>
+</html>
