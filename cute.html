@@ -58,69 +58,64 @@
         }
 
         #uploadedImage {
-            width: 300px;
-            height: 390px;
+            width: 490px;
+            height: 420px;
             object-fit: cover;
             border-radius: 15px;
-            margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่างของภาพ */
-        }
+            margin-bottom: -100px; /* เพิ่มระยะห่างด้านล่างของภาพ */
 
+        }
+        
+        /* รูปไอคอนแสดงภาพ */
         .icon {
             width: 20px;
             height: 20px;
+            margin-right: 10px;
+        }
+
+         /* ปุ่มชอบและไม่ชอบ */
+         .like-dislike-buttons {
+    position: absolute;
+    bottom: -10px;
+    left: 50%; /* เปลี่ยนจาก 30% เป็น 50% */
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px; /* ระยะห่างด้านล่างของปุ่ม */
+    gap: 200px;
+}
+
+
+        .like-dislike-buttons button {
+            background: rgba(0, 0, 0, 0.5);
+            color:#4b3a2f;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .like-dislike-buttons button img {
+            width: 20px;
+            height: 20px;
             margin-right: 5px;
-        }
-
-        .like-dislike-buttons {
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-}
-
-.like-dislike-buttons button {
-    background: rgba(0, 0, 0, 0.5);
-    color:#4b3a2f;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 200px;
-    cursor: pointer;
-    width: -40px;
-    height: auto;
-    margin-bottom: 90px;
-    gap: 50px; /* เพิ่มระยะห่างระหว่างปุ่ม */
-     margin: 70px;
-    
-}
-
-
-        #likeButton {
-            left: 20%;
-           
-        }
-
-        #dislikeButton {
-            left: -20%;
         }
 
         #likeCount, #dislikeCount {
             font-size: 18px;
             margin-top: 20px;
             margin-right: 10px;
-            color: #4b3a2f;
+            color: #000000;
         }
 
     </style>
+
 </head>
+
 <body>
-    <div class="like-dislike-buttons">
-        <button id="likeButton"><img src="heart.png" alt="Like" class="icon"></button>
-        <button id="dislikeButton"><img src="dislike.png" alt="Dislike" class="icon"></button>
-    </div>
     
-    <div class="navbar">
+<div class="navbar">
         <a href="profile.html" class="profile-icon"> PROFILE </a>
         <a href="pictourny.html"> Pictourny </a>
         <a href="gallery.html"> Gallery </a>
@@ -135,66 +130,58 @@
         </form>
     </div>
 
+    <div class="like-dislike-buttons">
+
+        <button id="likeBtn"><img src="heart.png" alt="Like" class="icon"></button>
+        <button id="dislikeBtn"><img src="dislike.png" alt="Dislike" class="icon"></button>
+    </div>
+    
     <div id="uploadedImageContainer">
         <img id="uploadedImage" src="#" alt="Uploaded Image">
+        <div id="likeCount">0</div>
+        <div id="dislikeCount">0</div>
     </div>
-    <div id="likeCount">0</div>
-    <div id="dislikeCount">0</div>
-    
     
     <script>
+
+        var currentIndex = 0; // ตั้งค่า currentIndex เป็น 0 ที่นี่
+
         window.onload = function() {
-    showImage(currentIndex);
-};
+            showImage(currentIndex);
+        };
 
-var imageUrls = [
-    '1.jpeg',
-    '2.jpeg',
-    '3.jpeg',
-    // เพิ่ม URL ของรูปภาพเพิ่มเติมตามต้องการ
-];
+        var imageUrls = [
+            '1.jpeg',
+            '2.jpeg',
+            '3.jpeg',
+            // เพิ่ม URL ของรูปภาพเพิ่มเติมตามต้องการ
+        ];
 
-var imageElement = document.getElementById('uploadedImage');
-var likeButton = document.getElementById('likeButton');
-var dislikeButton = document.getElementById('dislikeButton');
+        var imageElement = document.getElementById('uploadedImage');
+        var likeButtonElement = document.getElementById('likeBtn');
+        var dislikeButtonElement = document.getElementById('dislikeBtn');
 
-var likeCount = 0;
-var dislikeCount = 0;
-var currentIndex = 0;
+        var likeCount = 0;
+        var dislikeCount = 0;
 
-function showImage(index) {
-    imageElement.src = imageUrls[index];
-    currentIndex = index;
-}
+        function showImage(index) {
+            imageElement.src = imageUrls[index];
+            currentIndex = index;
+        }
 
-likeButton.addEventListener('click', function() {
-    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-    showImage(currentIndex);
-    countLike();
-});
+        likeButtonElement.addEventListener('click', function() {
+            likeCount++;
+            document.getElementById('likeCount').innerText = likeCount;
+            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+            showImage(currentIndex);
+        });
 
-dislikeButton.addEventListener('click', function() {
-    currentIndex = (currentIndex + 1) % imageUrls.length;
-    showImage(currentIndex);
-    countDislike();
-});
-
-function countLike() {
-    likeCount++;
-    document.getElementById('likeCount').innerText = likeCount;
-    localStorage.setItem('likeCount', likeCount);
-    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length; // สลับรูปภาพไปทางด้านซ้าย
-    showImage(currentIndex); // แสดงรูปภาพใหม่
-}
-
-function countDislike() {
-    dislikeCount++;
-    document.getElementById('dislikeCount').innerText = dislikeCount;
-    localStorage.setItem('dislikeCount', dislikeCount);
-    currentIndex = (currentIndex + 1) % imageUrls.length; // สลับรูปภาพไปทางด้านขวา
-    showImage(currentIndex); // แสดงรูปภาพใหม่
-}
-
+        dislikeButtonElement.addEventListener('click', function() {
+            dislikeCount++;
+            document.getElementById('dislikeCount').innerText = dislikeCount;
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            showImage(currentIndex);
+        });
 
     </script>
 </body>
