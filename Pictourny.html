@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <title> PICTOURNY </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
     <style>
         body {
-            background-color: #4b3a2f; /* ใช้รหัสสีน้ำตาล DarkSlateBrown */
-            font-family: "Roboto", sans-serif; /* ใช้ฟอนต์ Roboto หรือฟอนต์ที่คุณต้องการ */
+            background-color: #4b3a2f;
+            font-family: "Roboto", sans-serif;
             margin: 5px;
             padding: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-radius: 10px;
+            overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
         }
 
         .navbar {
-            background-color: #360404; /* สีพื้นหลังของแถบเมนู */
+            background-color: #360404;
             overflow: hidden;
-            width: 100%; /* ความกว้างเต็มของหน้าเว็บ */
-            display: flex;
-            justify-content: space-between; /* จัดเรียงเมนูทางซ้ายและทางขวา */
-            align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลาง */
-            padding: 10px 20px; /* เพิ่มช่องว่างรอบเมนู */
+            border-radius: 20px;
+            padding: 10px;
         }
 
         .navbar a {
@@ -35,202 +40,206 @@
             text-align: center;
             padding: 15px 20px;
             text-decoration: none;
+            border-radius: 10px;
         }
 
         .navbar a:hover {
-            background-color: #ddd; /* สีพื้นหลังเมื่อเม้าส์ไปชี้ */
+            background-color: #ddd;
             color: black;
+            border-radius: 10px;
         }
 
         .search-container {
             float: right;
-            margin-left: auto; /* ให้กล่องค้นหาอยู่ด้านขวา */
+            border-radius: 20px;
         }
 
-        .search-container input[type=text] {
-            padding: 10px;
-            margin-top: 5px;
-            margin-right: 16px;
-            border: none;
-            font-size: 17px;
+        .search-input {
+            padding: 10px 30px 10px 10px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        .category-separator {
-            color: white;
-            cursor: pointer;
-            font-family: "Montserrat", sans-serif;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            transition: opacity 1.9s;
-            align-self: flex-start; /* ให้ชื่อหมวดหมู่อยู่บนสุด */
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            margin: 15px;
         }
 
-        .category-container {
-            display: flex;
-            flex-direction: row; /* เปลี่ยนเป็นแนวนอน */
-            justify-content: space-between; /* จัดการตำแหน่งแต่ละหมวดหมู่ */
-            padding: 5px; /* เพิ่ม padding เพื่อสวยงาม */
-        }
-
-
-
-        .container {
-            display: flex;
-            flex-wrap: nowrap; /* ไม่ให้ข้อความขึ้นบรรทัดใหม่ */
-            overflow-x: auto; /* เพิ่มแถบเลื่อนให้เมื่อหน้าจอไม่พอขนาด */
-        }
-
-        .category-separator {
-            color: white;
-            cursor: pointer;
-            font-family: "Montserrat", sans-serif;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            transition: opacity 0.9s;
-            align-self: flex-start; /* ให้ชื่อหมวดหมู่อยู่บนสุด */
-        }
-
-        .gallery-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            overflow-x: auto; /* เพิ่มแถบเลื่อนในแนวนอนเมื่อข้อความหรือรูปภาพเกินขอบเขต */
-            width: 100%; /* กำหนดความกว้างเต็มของพื้นที่ที่รูปและข้อความอยู่ */
-            
-        }
-
-
-        .gallery-container.show {
-            display: block;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: nowrap; /* ไม่ให้รูปภาพขึ้นบรรทัดใหม่ */
-            overflow-x: auto; /* เพิ่มแถบเลื่อนให้เมื่อหน้าจอไม่พอขนาด */
+        .center {
+            box-sizing: border-box;
+            width: 80%;
+            margin: auto;
+            margin-top: 100px;
+            position: relative; /* เพิ่มการกำหนด position เพื่อให้รูปภาพซ้อนกัน */
+            overflow: hidden; /* ป้องกันการเลื่อนแนวนอน */
         }
 
         .gallery-item {
-            position: relative; /* เพื่อสร้างพื้นที่สำหรับไอคอน */
-            margin-top : 60px;
-            opacity: 10; /* กำหนดให้รูปภาพในแต่ละหมวดหมู่มีความโปร่งใสเมื่อเริ่มต้น */
-            transition: opacity 0.5s; /* เพิ่มการเปลี่ยนแปลงอย่างเรียบร้อย */
+            position: relative;
+            margin-right: 20px;
+            margin-top: 20px; /* ลดระยะห่างระหว่างรูปภาพ */
+            transition: transform 0.3s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจน */
+            cursor: pointer; /* เพิ่ม cursor pointer เมื่อนำเมาส์ไปชี้รูปภาพ */
         }
 
         .gallery-item img {
-            width: 300px; /* กำหนดความกว้างของรูปภาพ */
-            height: 390px; /* กำหนดความสูงของรูปภาพ */
-            object-fit: cover; /* ปรับขนาดรูปภาพให้เต็มพื้นที่และไม่มีขอบ */
-            border-radius: 15px;
+            width: 300px; /* ขยายให้เต็มขอบ */
+            height: 400px; /* ให้ความสูงปรับตามกว้าง */
+            object-fit: cover; /* รักษาสัดส่วน */
+            border-radius: 20px;
+            display: block;
+            margin: auto;
+            transition: transform 0.3s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจน */
         }
 
-        .gallery-item .icon {
-            bottom: 30px; /* ขยับไอคอนลงด้านล่างของภาพ */
-            left: 60%; /* จัดตำแหน่งไอคอนไปที่กลาง */
-            transform: translateX(300%); /* ย้ายไอคอนให้ตรงกลาง */
-            width: 40px; /* ขนาดของไอคอน */
-            height: auto; /* ความสูงของไอคอนจะถูกปรับเพื่อให้สัดส่วนเท่ากัน */
-            
+        .icon {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            transition: opacity 0.3s ease-in-out;
+            cursor: pointer;
+            opacity: 0;
         }
 
-        /* เมื่อเม้าส์ชี้ไปที่รูป ไอคอนจะเป็นเข้มขึ้น */
+        .icon img {
+            width: 30px;
+            height: 30px;
+            filter: invert(1);
+        }
+
         .gallery-item:hover .icon {
-            opacity: 10px;
+            opacity: 1;
         }
 
-
-        .fade-out {
-            opacity: 0.5; /* ลดความเข้มของส่วนที่ไม่ได้เลือก */
+        /* สไลด์โปร่งเข้าหรือออกเมื่อมีการเลื่อน */
+        .slick-slider:hover .slick-slide {
+            transform: scale(0.8);
         }
 
-        .gallery-item img:hover {
-            filter: brightness(80%);
+        /* ขยายรูปภาพเมื่อโฮเวอร์ */
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
-        
     </style>
 </head>
+
 <body>
-    
+
     <div class="navbar">
-        <a href="profile.html" class="profile-icon"> PROFILE </a>
-        <a href="pictourny.html"> Pictourny </a>
-        <a href="gallery.html"> Gallery </a>
-        <a href="top10.html"> Top 10 </a>
-        <a href="upload_pic.html"> Upload Pic </a>
-    </div>
-    
-        
+        <a href="profile.html" class="profile-icon">PROFILE</a>
+        <a href="pictourny.html">Pictourny</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="top10.html">Top 10</a>
+        <a href="upload_pic.html">Upload Pic</a>
+
         <div class="search-container">
             <form action="/action_page.php">
-                <input type="text" placeholder="ค้นหา.." name="search">
-                <button type="submit"> search </button>
+                <input type="text" placeholder="ค้นหา.." name="search" class="search-input">
+                <button type="submit" class="search-icon">search</button>
             </form>
         </div>
-
     </div>
 
-    <div class="category-container">
-        <div class="category-separator" onclick="toggleCategoryAndImages('cute')">- Cute -</div>
-        <div class="gallery-container" id="cuteGallery">
-            <div class="gallery">
-                <div class="gallery-item" onclick="goToNextPage('cute.html')">
-                    <img src="cute1.jpeg" alt="Cute Image 1">
-                    <img class="icon" src="check.png" alt="Cute Icon">
-                </div>
+    <div class="center">
+        <div class="gallery-item" onclick="goToNextPage('cute.html')">
+            <img src="1.jpeg" alt="Cute Image 1">
+            <div class="icon" onclick="toggleCheck(this)">
+                <img src="check.png" alt="Check Icon">
             </div>
         </div>
-    
-        <div class="category-separator" onclick="toggleCategoryAndImages('funny')">- Funny -</div>
-        <div class="gallery-container" id="funnyGallery">
-            <div class="gallery">
-                <div class="gallery-item" onclick="goToNextPage('Funny.html')">
-                    <img src="funny2.jpeg" alt="Funny Image 1">
-                    <img class="icon" src="check.png" alt="Funny Icon">
-                </div>
+        <div class="gallery-item" onclick="goToNextPage('Funny.html')">
+            <img src="funny2.jpeg" alt="Funny Image 1">
+            <div class="icon" onclick="toggleCheck(this)">
+                <img src="check.png" alt="Check Icon">
             </div>
         </div>
-    
-        <div class="category-separator" onclick="toggleCategoryAndImages('food')">- Food -</div>
-        <div class="gallery-container" id="foodGallery">
-            <div class="gallery">
-                <div class="gallery-item" onclick="goToNextPage('Food.html')">
-                    <img src="food1.jpeg" alt="Food Image 1">
-                    <img class="icon" src="check.png" alt="Food Icon">
-                </div>
+        <div class="gallery-item" onclick="goToNextPage('Food.html')">
+            <img src="f5.jpeg" alt="Food Image 1">
+            <div class="icon" onclick="toggleCheck(this)">
+                <img src="check.png" alt="Check Icon">
             </div>
         </div>
-    
-        <div class="category-separator" onclick="toggleCategoryAndImages('travel')">- Travel -</div>
-        <div class="gallery-container" id="travelGallery">
-            <div class="gallery">
-                <div class="gallery-item" onclick="goToNextPage('Travel.html')">
-                    <img src="travel1.jpeg" alt="Travel Image 1">
-                    <img class="icon" src="check.png" alt="Travel Icon">
-                </div>
+        <div class="gallery-item" onclick="goToNextPage('Travel.html')">
+            <img src="t1.jpeg" alt="Travel Image 1">
+            <div class="icon" onclick="toggleCheck(this)">
+                <img src="check.png" alt="Check Icon">
+            </div>
+        </div>
+        <div class="gallery-item" onclick="goToNextPage('Art.html')">
+            <img src="a1.jpeg" alt="Art Image 1">
+            <div class="icon" onclick="toggleCheck(this)">
+                <img src="check.png" alt="Check Icon">
             </div>
         </div>
     </div>
-
-    <div class="category-separator" onclick="toggleCategoryAndImages('Art')">- Art -</div>
-        <div class="gallery-container" id="travelGallery">
-            <div class="gallery">
-                <div class="gallery-item" onclick="goToNextPage('Art.html')">
-                    <img src="art1.jpeg" alt="Art Image 1">
-                    <img class="icon" src="check.png" alt="art Icon">
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script>
+        $(document).ready(function(){
+            $('.center').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
 
-    
+        });
+
+        let isDragging = false;
+        let startX;
+
+        function startDragging(e) {
+            isDragging = true;
+            startX = e.clientX;
+        }
+
+        function stopDragging() {
+            isDragging = false;
+        }
+
+        function dragging(e) {
+            if (!isDragging) return;
+            const scrollSpeed = 1;
+            const scrollDirection = (e.clientX - startX) > 0 ? -1 : 1;
+            const container = document.querySelector('.center');
+            container.scrollLeft += scrollSpeed * scrollDirection;
+            startX = e.clientX;
+        }
 
         function goToNextPage(url) {
             window.location.href = url;
         }
-    </script>
-</body>
-</html>
 
+        function toggleCheck(icon) {
+            icon.style.opacity = icon.style.opacity === '1' ? '0' : '1';
+        }
+    </script>
+
+</body>
+
+</html>

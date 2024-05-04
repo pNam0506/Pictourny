@@ -7,8 +7,9 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open cute.html",
-            "file": "c:\\Users\\REAL\\Documents\\planmarket\\MarketApp-main (1)\\MarketApp-main\\Pictourny\\Pictourny\\cute.html"
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
