@@ -1,0 +1,71 @@
+body {
+    background-color: #4b3a2f; /* ใช้รหัสสีน้ำตาล DarkSlateBrown */
+    font-family: "Roboto", sans-serif; /* ใช้ฟอนต์ Roboto หรือฟอนต์ที่คุณต้องการ */
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    background-color: #360404; /* สีพื้นหลังของแถบเมนู */
+    overflow: hidden;
+    width: 100%; /* ความกว้างเต็มของหน้าเว็บ */
+    display: flex;
+    justify-content: space-between; /* จัดเรียงเมนูทางซ้ายและทางขวา */
+    align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลาง */
+    padding: 10px 20px; /* เพิ่มช่องว่างรอบเมนู */
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* สีพื้นหลังเมื่อเม้าส์ไปชี้ */
+    color: black;
+}
+
+.search-container {
+    float: right;
+    margin-left: auto; /* ให้กล่องค้นหาอยู่ด้านขวา */
+}
+
+.search-container input[type=text] {
+    padding: 10px;
+    margin-top: 5px;
+    margin-right: 16px;
+    border: none;
+    font-size: 17px;
+}
+
+.gallery {
+    max-width: 300px;
+    max-height: 390px;
+    margin: 0 auto;
+    margin-top: 0px; 
+}
+
+.gallery-item {
+    margin-top: 60px;
+    opacity: 10; /* กำหนดให้รูปภาพในแต่ละหมวดหมู่มีความโปร่งใสเมื่อเริ่มต้น */
+
+}
+
+.gallery-item img {
+    width: 300px; /* กำหนดความกว้างของรูปภาพ */
+    height: 390px; /* กำหนดความสูงของรูปภาพ */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้เต็มพื้นที่และไม่มีขอบ */
+    border-radius: 15px;
+}
+
+
+.gallery-item img:hover {
+    filter: brightness(80%);
+}

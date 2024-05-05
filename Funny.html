@@ -2,70 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+
+    <title> PICTOURNY </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <style>
-        body {
+       body {
             background-color: #4b3a2f;
             font-family: "Roboto", sans-serif;
             margin: 5px;
             padding: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-radius:0px;
+            overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
         }
 
         .navbar {
             background-color: #360404;
             overflow: hidden;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
+            border-radius: 20px;
+            padding: 10px;
         }
 
         .navbar a {
+            float: left;
+            display: block;
             color: #f2f2f2;
             text-align: center;
             padding: 15px 20px;
             text-decoration: none;
+            border-radius: 10px;
         }
 
         .navbar a:hover {
             background-color: #ddd;
             color: black;
+            border-radius: 10px;
         }
 
         .search-container {
-            margin-left: auto;
+            float: right;
+            border-radius: 20px;
         }
-
-        .search-container input[type=text] {
-            padding: 10px;
-            margin-top: 5px;
-            margin-right: 16px;
-            border: none;
-            font-size: 17px;
+    
+        .search-input {
+            padding: 10px 30px 10px 10px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-position: center;
         }
+    
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            margin: 15px;
+        }
+    
 
         #uploadedImageContainer {
             position: relative;
-            margin-top: 60px;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #uploadedImage {
             width: 490px;
-            height: 420px;
+            height: 500px;
             object-fit: cover;
             border-radius: 15px;
-            margin-bottom: -100px; /* เพิ่มระยะห่างด้านล่างของภาพ */
-
+            margin-bottom: 50px; /* เพิ่มระยะห่างด้านล่างของภาพ */
         }
-        
+
         /* รูปไอคอนแสดงภาพ */
         .icon {
             width: 20px;
@@ -73,116 +91,226 @@
             margin-right: 10px;
         }
 
-         /* ปุ่มชอบและไม่ชอบ */
-         .like-dislike-buttons {
+        .like-dislike-buttons {
     position: absolute;
-    bottom: -10px;
-    left: 50%; /* เปลี่ยนจาก 30% เป็น 50% */
+    bottom: 0px; /* ปรับตำแหน่งให้อยู่ด้านบนของรูปภาพ */
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
-    align-items: center;
-    margin-bottom: 50px; /* ระยะห่างด้านล่างของปุ่ม */
-    gap: 200px;
+    justify-content: center; /* จัดให้ปุ่มชอบและไม่ชอบอยู่กลางตามแนวนอน */
+    gap: -50px; /* ปรับระยะห่างระหว่างปุ่ม */
+    margin: 5 10px; /* ปรับระยะของ margin-right และ margin-left */
 }
 
 
+
+
         .like-dislike-buttons button {
-            background: rgba(0, 0, 0, 0.5);
-            color:#4b3a2f;
+            background: rgba(255, 255, 255, 0.5); /* กำหนดพื้นหลังเป็นสีขาว */
+            color: #000000; /* ปรับสีของตัวอักษร */
             padding: 5px 10px;
-            border: none;
-            border-radius: 200px;
+            border: 0px solid #ffffff; /* เพิ่มเส้นขอบ */
+            border-radius: 20px; /* ปรับรูปร่างให้เป็นสี่เหลี่ยมมน */
+            margin: 150px;
             cursor: pointer;
-            margin: 0 10px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .like-dislike-buttons button img {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
+            width: 25px;
+            height: 25px;
+            margin-left: 5px;
+            transition: transform 0.3s ease; /* เพิ่ม transition เพื่อทำให้การเปลี่ยนแปลงของ transform มีการแอนิเมชัน */
         }
 
-        #likeCount, #dislikeCount {
-            font-size: 18px;
+        .like-dislike-buttons button:hover {
+            background-color: rgba(255, 255, 255, 0.8); /* เมื่อโฮเวอร์ปุ่ม ทำให้พื้นหลังอ่อนขึ้น */
+            transform: scale(1.1); /* ทำให้ปุ่มซูมเล็กน้อย */
+        }
+
+
+        /* ปุ่มก่อนหน้าและถัดไป */
+        .navigation-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
-            margin-right: 10px;
-            color: #000000;
         }
 
-    </style>
+        .navigation-buttons button {
+            background: rgba(255, 255, 255, 0.5);
+            color: #000000;
+            padding: 10px 15px;
+            border: 0px solid #ffffff;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
 
+        .navigation-buttons button:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        #likeCount, #dislikeCount /*ตัวเเสดงเลขนับกดถูกใจ*/{
+            font-size: 24px;
+            color: #333;
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0;
+        }
+
+        .navigation-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* จัดให้ปุ่มอยู่ตรงกลางของ navigation-buttons */
+    margin-bottom: 10px;
+    position: relative;
+    bottom: 400px;
+}
+
+.navigation-buttons button {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000000;
+    padding: 15px 15px;
+    border: 0px solid #000000;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#prevBtn {
+    margin-right: 270px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+}
+
+#nextBtn {
+    margin-left: 270px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+}
+
+.footer {
+    text-align: left;
+    margin-top: -750px;
+}
+
+.footer a {
+    color: #ffffff; /* สีของข้อความ */
+    text-decoration: none; /* ไม่ให้มีเส้นใต้ข้อความ */
+    font-size: 16px; /* ขนาดตัวอักษร */
+}
+
+.footer a:hover {
+    color: #cccccc; /* สีของข้อความเมื่อโฮเวอร์ */
+}
+        </style>
 </head>
-
 <body>
-    
 <div class="navbar">
-        <a href="profile.html" class="profile-icon"> PROFILE </a>
-        <a href="pictourny.html"> Pictourny </a>
-        <a href="gallery.html"> Gallery </a>
-        <a href="top10.html"> Top 10 </a>
-        <a href="upload_pic.html"> Upload Pic </a>
-    </div>
-        
+    <a href="profile.html" class="profile-icon">PROFILE</a>
+    <a href="pictourny.html">Pictourny</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="top10.html">Top 10</a>
+    <a href="upload_pic.html">Upload Pic</a>
+    
     <div class="search-container">
         <form action="/action_page.php">
             <input type="text" placeholder="ค้นหา.." name="search">
-            <button type="submit"> search </button>
+            <button type="submit">Search</button>
         </form>
     </div>
+</div>
 
+<div id="uploadedImageContainer">
     <div class="like-dislike-buttons">
-
         <button id="likeBtn"><img src="heart.png" alt="Like" class="icon"></button>
         <button id="dislikeBtn"><img src="dislike.png" alt="Dislike" class="icon"></button>
     </div>
-    
-    <div id="uploadedImageContainer">
-        <img id="uploadedImage" src="#" alt="Uploaded Image">
-        <div id="likeCount">0</div>
-        <div id="dislikeCount">0</div>
+    <img id="uploadedImage" src="#" alt="Uploaded Image">
+    <div id="likeCount">0</div>
+    <div id="dislikeCount">0</div>
+
+    <div class="navigation-buttons">
+        <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
     </div>
-    
-    <script>
+</div>
+<div class="footer">
+    <a href="Pictourny.html"><i class="fas fa-backward"></i> Back to Home</a>
+</div>
 
-        var currentIndex = 0; // ตั้งค่า currentIndex เป็น 0 ที่นี่
+<script>
+    var currentIndex = 0; // ตั้งค่า currentIndex เป็น 0 ที่นี่
 
-        window.onload = function() {
-            showImage(currentIndex);
-        };
+    window.onload = function() {
+        showImage(currentIndex);
+    };
 
-        var imageUrls = [
-            '1.jpeg',
-            '2.jpeg',
-            '3.jpeg',
-            // เพิ่ม URL ของรูปภาพเพิ่มเติมตามต้องการ
-        ];
+    var imageUrls = [
+        '1.jpeg',
+        '2.jpeg',
+        '3.jpeg',
+        '4.jpeg',
+        '5.jpeg',
+        '6.jpeg'
+        // เพิ่ม URL ของรูปภาพเพิ่มเติมตามต้องการ
+    ];
 
-        var imageElement = document.getElementById('uploadedImage');
-        var likeButtonElement = document.getElementById('likeBtn');
-        var dislikeButtonElement = document.getElementById('dislikeBtn');
+    var imageElement = document.getElementById('uploadedImage');
+    var likeButtonElement = document.getElementById('likeBtn');
+    var dislikeButtonElement = document.getElementById('dislikeBtn');
 
-        var likeCount = 0;
-        var dislikeCount = 0;
+    var likeCount = 0;
+    var dislikeCount = 0;
 
-        function showImage(index) {
-            imageElement.src = imageUrls[index];
-            currentIndex = index;
-        }
+    function showImage(index) {
+        imageElement.src = imageUrls[index];
+        currentIndex = index;
+    }
 
-        likeButtonElement.addEventListener('click', function() {
-            likeCount++;
-            document.getElementById('likeCount').innerText = likeCount;
-            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-            showImage(currentIndex);
-        });
+    likeButtonElement.addEventListener('click', function() {
+        likeCount++;
+        document.getElementById('likeCount').innerText = likeCount;
+        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+        showImage(currentIndex);
+    });
 
-        dislikeButtonElement.addEventListener('click', function() {
-            dislikeCount++;
-            document.getElementById('dislikeCount').innerText = dislikeCount;
-            currentIndex = (currentIndex + 1) % imageUrls.length;
-            showImage(currentIndex);
-        });
+    dislikeButtonElement.addEventListener('click', function() {
+        dislikeCount++;
+        document.getElementById('dislikeCount').innerText = dislikeCount;
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        showImage(currentIndex);
+    });
 
-    </script>
+    var prevButtonElement = document.getElementById('prevBtn');
+    var nextButtonElement = document.getElementById('nextBtn');
+
+    prevButtonElement.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+        showImage(currentIndex);
+    });
+
+    nextButtonElement.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        showImage(currentIndex);
+    });
+
+    document.getElementById('likeCount').innerText = likeCount;
+    document.getElementById('dislikeCount').innerText = dislikeCount;
+
+    // เพิ่มจำนวนครั้งที่คลิกที่ปุ่ม "ชอบ" ลงใน localStorage
+    document.getElementById('likeBtn').addEventListener('click', function() {
+        var likeCount = localStorage.getItem('likeCount') || 0;
+        likeCount++;
+        localStorage.setItem('likeCount', likeCount);
+    });
+
+    // เพิ่มจำนวนครั้งที่คลิกที่ปุ่ม "ไม่ชอบ" ลงใน localStorage
+    document.getElementById('dislikeBtn').addEventListener('click', function() {
+        var dislikeCount = localStorage.getItem('dislikeCount') || 0;
+        dislikeCount++;
+        localStorage.setItem('dislikeCount', dislikeCount);
+    });
+</script>
 </body>
 </html>
