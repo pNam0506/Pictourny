@@ -68,16 +68,41 @@
 }
 
 .gallery-item img {
-    width: 290px; /* กำหนดความกว้างของรูปเป็น 290px */
-    height: 220px; /* กำหนดความสูงของรูปเป็น 220px */
+    width: 270px; /* กำหนดความกว้างของรูปเป็น 290px */
+    height: 200px; /* กำหนดความสูงของรูปเป็น 220px */
     object-fit: cover; /* ปรับขนาดรูปภาพให้พอดีกับพื้นที่และไม่มีขอบ */
     border-radius: 20px; /* เพิ่มขอบมน */
+    transition: transform 0.3s ease; /* เพิ่ม transition เพื่อทำให้การเปลี่ยนขนาดของรูปภาพมีความนุ่มนวลขึ้น */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05); /* ซูมรูปภาพเล็กลงเมื่อวางเมาส์ */
+}
+
+
+
+.gallery-title {
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
+    font-family: "Montserrat", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
 }
 
 .gallery-title {
     text-align: center; /* จัดข้อความให้อยู่กลาง */
     color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
     font-family: "Montserrat", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 3s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 3 วินาที */
+    transition: opacity 0.3s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.3 วินาที */
+}
+
+@keyframes slideUpDown {
+    0% {
+        top: 0; /* เริ่มต้นที่ด้านบน */
+    }
+    100% {
+        top: 20px; /* ลงล่างที่ 20px */
+    }
 }
 
 
