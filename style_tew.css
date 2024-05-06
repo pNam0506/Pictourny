@@ -174,7 +174,7 @@ nav{
 
 
 
-/*
+
 .ipopup .overlay{
     position: fixed;
     top: 0px;
@@ -184,18 +184,18 @@ nav{
     z-index: 1;
     display: none;
   }
-  */
-  /*
+  
+  
   .img_info {
     display: flex;
     flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
-    /* justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
-    /* margin-top: 10px;
+    justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
+     margin-top: 10px;
     margin-right: 100px;
     margin-left: 130px;
-  } */ 
+  } 
   
-  /* .img_info .info1,.info2,.info3{
+   .img_info .info1,.info2,.info3{
     display: flex;
     align-items: center;
   }
@@ -207,9 +207,9 @@ nav{
     margin-top: auto;
   margin-bottom: auto;
     margin-left: 10px;
-  } */
+  } 
   
-  /* .img_info .info1 img{
+  .img_info .info1 img{
     width: 52px;
     height: 52px;
   }
@@ -264,7 +264,7 @@ nav{
   .ipopup.active .content{
     transition: all 300ms ease-in-out;
     transform: translate(-50%,-50%) scale(1);
-  } */
+  }
 
 .profile_body {
     display: flex;
