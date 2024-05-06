@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<div class="background">
+<div class="background-login">
     <div class="container">
-        <div class="box form-box">
+        <div class="box-login form-box">
             <?php
                 include("./config.php");
                 if(isset($_POST['submit'])){

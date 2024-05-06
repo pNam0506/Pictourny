@@ -58,7 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $mail->send();
                 echo "<div class='message'>
                 <p>Message sent, please check your inbox</p>
-            </div><br>";
+            </div><br>
+            ";
+            echo "<a href='login.php'><button class='btn-back'>back</button></a>";
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
             }
