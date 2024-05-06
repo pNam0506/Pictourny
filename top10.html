@@ -1,302 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <title> PICTOURNY </title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
-    <style>
-        body {
-            background-color: #4b3a2f;
-            font-family: "Roboto", sans-serif;
-            margin: 5px;
-            padding: 5px;
-            border-radius:0px;
-            overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
-        }
-    
-        .navbar {
-            background-color: #360404;
-            overflow: hidden;
-            border-radius: 20px;
-            padding: 10px;
-        }
-    
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            border-radius: 10px;
-        }
-    
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            border-radius: 10px;
-        }
-    
-        .search-container {
-            float: right;
-            border-radius: 20px;
-        }
-    
-        .search-input {
-            padding: 10px 30px 10px 10px;
-            border-radius: 20px;
-            background-color: #ffffff;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    
-        .search-icon {
-            width: 20px;
-            height: 20px;
-            margin: 15px;
-        }
-    
-        .center {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%; /* กำหนดความกว้างเต็มขอบเขต */
-    height: 100%; /* กำหนดความสูงที่เหมาะสม */
-    margin-top: 30px;; /* กำหนดขอบรอบและการจัดแสดงให้อยู่ตรงกลาง */
-    overflow: hidden; /* ป้องกันการเลื่อนแนวนอน */
-    object-fit: contain; /* ปรับให้รูปภาพเต็มพื้นที่และไม่โดนตัด */
-}
-
-
-    
-        .center .slick-prev {
-            position: absolute;
-            top: 220px;
-            left: 20px;
-            z-index: 10;
-        }
-    
-        .center .slick-next {
-            position: absolute;
-            top: 220px;
-            right: 20px;
-            z-index: 10;
-        }
-    
-        .slick-arrow {
-            z-index: 10px;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            border: none;
-            outline: none;
-        }
-        
-        .slick-slide {
-    transition: transform 0.5s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจนเมื่อซูม */
-}
-
-        .gallery-item {
-            position: relative;
-            margin-right: 20px;
-            transition: transform 0.3s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจน */
-            cursor: pointer; /* เพิ่ม cursor pointer เมื่อนำเมาส์ไปชี้รูปภาพ */
-        }
-        .slick-list{
-            padding: 1000px;;
-        }
-        .gallery-item img {
-            width: 400px;
-            height: 490px; /* ให้ความสูงปรับตามกว้าง */
-            object-fit: cover; /* รักษาสัดส่วน */
-            border-radius: 20px;
-            display: block;
-            margin: auto;
-            margin-top: 20px;
-            transition: transform 0.5s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจน */
-        }
-        .icon {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px; /* กำหนดความกว้าง */
-    height: 40px; /* กำหนดความสูง */
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    transition: opacity 0.3s ease-in-out;
-    cursor: pointer;
-    opacity: 0;
-}
-
-.icon img {
-    width: 30px;
-    height: 30px;
-    margin: 5px; /* เพิ่มการเยื้องของรูปภาพภายในไอคอน */
-    filter: invert(1);
-}
-
-        .gallery-item:hover .icon {
-            opacity: 1;
-        }
-    
-        /* ขยายรูปภาพเมื่อโฮเวอร์ */
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .footer {
-    text-align: left;
-    margin-top: 50px;
-}
-
-.footer a {
-    color: #ffffff; /* สีของข้อความ */
-    text-decoration: none; /* ไม่ให้มีเส้นใต้ข้อความ */
-    font-size: 16px; /* ขนาดตัวอักษร */
-}
-
-.footer a:hover {
-    color: #cccccc; /* สีของข้อความเมื่อโฮเวอร์ */
-}
-
-
-    </style>
-    
+    <title>Top10</title>
+    <link rel="stylesheet" href="style_tew.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet">
+    <script src="jquery-3.7.1.min.js"></script>
 </head>
-
 <body>
-
-    <div class="navbar">
-        <a href="profile.html" class="profile-icon">PROFILE</a>
-        <a href="pictourny.html">Pictourny</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="top10.html">Top 10</a>
-        <a href="upload_pic.html">Upload Pic</a>
-
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="ค้นหา.." name="search" class="search-input">
-                <button type="submit" class="search-icon">search</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="center">
-        <div class="gallery-item" onclick="goToNextPage('cute.html')">
-            <img src="c6.jpeg" alt="Cute Image 1">
-            <div class="icon" onclick="toggleCheck(this)">
-                <img src="check.png" alt="Check Icon">
-            </div>
-        </div>
-        <div class="gallery-item" onclick="goToNextPage('Funny.html')">
-            <img src="funny2.jpeg" alt="Funny Image 1">
-            <div class="icon" onclick="toggleCheck(this)">
-                <img src="check.png" alt="Check Icon">
-            </div>
-        </div>
-        <div class="gallery-item" onclick="goToNextPage('Food.html')">
-            <img src="f5.jpeg" alt="Food Image 1">
-            <div class="icon" onclick="toggleCheck(this)">
-                <img src="check.png" alt="Check Icon">
-            </div>
-        </div>
-        <div class="gallery-item" onclick="goToNextPage('Travel.html')">
-            <img src="t1.jpeg" alt="Travel Image 1">
-            <div class="icon" onclick="toggleCheck(this)">
-                <img src="check.png" alt="Check Icon">
-            </div>
-        </div>
-        <div class="gallery-item" onclick="goToNextPage('Art.html')">
-            <img src="a1.jpeg" alt="Art Image 1">
-            <div class="icon" onclick="toggleCheck(this)">
-                <img src="check.png" alt="Check Icon">
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <a href="Gallery.html"><i class="fas fa-backward"></i> Back to Home</a>
-    </div>
     
+    <nav class="nevbar">
+        <div class="profile">
+            <li><a href="">Profile</a></li>
+        </div>
+        <ul class="menu">
+            <li><a href="">Pictourny</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Top 10</a></li>
+            <li><a href="">Upload Pic</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="" >
+            <img src="img/search.png" alt="">
+        </div>
+        
+    </nav>
 
-    <script>
-        $(document).ready(function(){
-            $('.center').slick({
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 3,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-});
 
-$(".slick-prev").html('<i class="fas fa-caret-left"></i>'); // ใช้คลาส fas แทน fa-solid
-$(".slick-next").html('<i class="fas fa-caret-right"></i>'); // ใช้คลาส fas แทน fa-solid
-
-        });
-
-        let isDragging = false;
-        let startX;
-
-        function startDragging(e) {
-            isDragging = true;
-            startX = e.clientX;
-        }
-
-        function stopDragging() {
-            isDragging = false;
-        }
-
-        function dragging(e) {
-            if (!isDragging) return;
-            const scrollSpeed = 1;
-            const scrollDirection = (e.clientX - startX) > 0 ? -1 : 1;
-            const container = document.querySelector('.center');
-            container.scrollLeft += scrollSpeed * scrollDirection;
-            startX = e.clientX;
-        }
-
-        function goToNextPage(url) {
-            window.location.href = url;
-        }
-
-        function toggleCheck(icon) {
-            icon.style.opacity = icon.style.opacity === '1' ? '0' : '1';
-        }
-    </script>
-
+    <div class="top10_main">
+        
+        <section>
+            <div class="top10_head">
+                <!-- <button class="toleft"><img src="img/back.png" alt=""></button> -->
+                <div class="top10_type">TOP 10</div>
+                <!-- <button class="toright"><img src="img/back.png" alt=""></button> -->
+            </div>
+            
+            <div class="top10_img" id="top10_img">
+                <!-- <div class="top10_img_1">
+                    <img src="img/Rectangle 25.png" alt="">
+                    <div class="top10_info">
+                        <img src="img/thumbs-up 4.png" alt="">
+                                <p>999+ k</p>
+                    </div>
+                </div>
+                <div class="top10_img_1">
+                    <img src="img/Rectangle 25.png" alt="">
+                    <div class="top10_info">
+                        <img src="img/thumbs-up 4.png" alt="">
+                                <p>999+ k</p>
+                    </div>
+                </div>
+                
+                <img class="top10_img_2" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_3" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_4" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_5" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_6" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_7" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_8" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_9" src="img/Rectangle 25.png" alt="">
+                <img class="top10_img_10" src="img/Rectangle 25.png" alt=""> -->
+            </div>
+        </section>
+    
+        <div class="profile_bottom_back">
+            <button>
+                <img src="img/back.png" alt="">
+                <p>ย้อนกลับ</p>
+            </button>
+        </div>
+    </div>
+    <script src="profile.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,529 @@
+body {
+    display: flex;
+    background-color: #967F71;
+    justify-content: center; /* จัดเรียงให้อยู่ตรงกลางตามแนวนอน */
+    align-items: center; /* จัดเรียงให้อยู่ตรงกลางตามแนวดิ่ง */
+    height: 100vh; /* กำหนดความสูงของ body เท่ากับขนาดจอ */
+    margin: 0; /* ลบ margin ที่ถูกกำหนดไว้เริ่มต้น */
+    cursor: url(img/mousecursor.png) , auto;
+  }
+button{
+  cursor: pointer;
+}
+nav{
+
+    background-color: #432626;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* ให้ Navbar ของคุณอยู่ด้านหน้าของ elements อื่น */
+    display: flex;
+    justify-content: space-between;
+}
+.nevbar .profile{
+  margin-left: 90px;
+}
+.menu{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    text-indent: 50px;
+
+
+
+}
+
+.menu li{
+    margin: 0 1rem;
+
+}
+
+.menu li a{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: "Athiti", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.profile{
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+
+}
+.profile li a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.search{
+  background-color: rgba(217, 217, 217, 0.67);
+  border-radius: 36px;
+  width: 200px;
+  height: 30px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 20px;
+}
+
+.search img{
+  width: 11px;
+  height: 10px;
+  margin-right: 10px;
+  margin-top : auto;
+  margin-bottom: auto;
+}
+
+.search input{
+    background : none;
+      border: none;
+      outline : none;
+      width: 200px;
+      height: 23px;
+}
+
+
+.profile_body{
+  margin-top: 25px;
+
+}
+
+
+.profile_body1 {
+    display: flex;
+    flex-direction: column; /* จัดเรียงองค์ประกอบลงมาในแนวดิ่ง */
+   /* จัดให้องค์ประกอบอยู่ทางด้านซ้าย */
+}
+.profile_body1_1 p{
+  font-size: 48px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+}
+
+.profile_body1_2{
+  padding-left: 100px;
+}
+.profile_body1_2 img{
+  width: 370px;
+  height: 333px;
+  cursor: pointer;
+}
+
+.profile_body1_3 {
+    display: flex;
+    flex-direction: column; /* จัดเรียงปุ่มลงมาในแนวดิ่ง */
+    align-items: center; /* จัดให้อยู่ทางด้านซ้าย */
+    padding-left: 100px;
+    padding-top: 10px;
+}
+
+.profile_body1_3_text {
+    flex-grow: 1; /* ให้ปุ่มขยายเต็มพื้นที่ที่ว่างของพ่อค้า */
+    border-radius: 10px; /* กำหนดมุม */
+    width: 100%; /* ให้ปุ่มมีความยาวเท่ากับพื้นที่ว่างของพ่อค้า */
+    height: 35px;
+    background-color: rgba(217, 217, 217, 0.15);
+    border: none;
+    margin-top: 8px;
+    line-height: 35px;
+    text-align: center;
+    line-height: 0px; /* ปรับสูงต่อสูงของปุ่ม */
+    vertical-align: middle; /* จัดตำแหน่งตามแนวแกนตั้ง */
+    font-family: "Athiti", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;  
+    color: white;
+    display: flex;
+    justify-content: center; /* จัดให้ข้อความอยู่ตรงกลางแนวนอน */
+    align-items: center;
+}
+
+
+
+
+.profile_body2{
+  padding-left: 250px;
+}
+
+.profile_body2 .contrainer{
+  display: none;
+}
+
+.profile_body2_1 {
+  font-size: 48px;
+  text-decoration: none;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+.profile_body2_2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns ที่มีขนาดเท่ากัน */
+    gap: 10px; /* ระยะห่างระหว่างรูป */
+}
+
+.profile_body2_2 button{
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+}
+
+
+
+
+.ipopup .overlay{
+    position: fixed;
+    top: 0px;
+    left:0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    display: none;
+  }
+  
+  .img_info {
+    display: flex;
+    flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+    justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
+    margin-top: 10px;
+    margin-right: 100px;
+    margin-left: 130px;
+  }
+  
+  
+
+  .img_info .info1,.info2,.info3{
+    display: flex;
+    align-items: center;
+  }
+  
+  .img_info p{
+    font-size: 32px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #1E1E1E;
+    margin-top: auto;
+  margin-bottom: auto;
+    margin-left: 10px;
+  }
+  
+  .img_info .info1 img{
+    width: 52px;
+    height: 52px;
+  }
+  
+  .img_info .info1 img{
+    width: 50px;
+    height: 52px;
+  }
+  
+  .img_info .info1 img{
+    width: 51px;
+    height: 45px;
+  }
+  
+  .ipopup .content ,.content2 ,.content3 ,.content4 ,.content5 ,.content6 ,.content7 ,.content8 ,.content9{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    background: #d9d9dd;
+    opacity: 0.9;
+    width: 900px;
+    height: 700px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+  
+  }
+  
+  .ipopup .close-btn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width :30px;
+    height: 30px;
+    background: #F44336;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  
+  .ipopup.active .overlay{
+    display: block;
+  }
+  .ipopup.active2 .overlay{
+    display: block;
+  }
+  .ipopup.active3 .overlay{
+    display: block;
+  }
+  .ipopup.active4 .overlay{
+    display: block;
+  }
+  .ipopup.active5 .overlay{
+    display: block;
+  }
+  .ipopup.active6 .overlay{
+    display: block;
+  }
+  .ipopup.active7 .overlay{
+    display: block;
+  }
+  .ipopup.active8 .overlay{
+    display: block;
+  }
+  .ipopup.active9 .overlay{
+    display: block;
+  }
+  
+  .ipopup.active .content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+
+  .ipopup.active2 .content2{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+
+  .ipopup.active3 .content3{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active4 .content4{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active5 .content5{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active6 .content6{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active7 .content7{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active8 .content8{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active9 .content9{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+
+.profile_body {
+    display: flex;
+    flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+    justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
+}
+
+
+.profile_bottom{
+    display: flex;
+    flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+    justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
+    padding-top: 30px;
+}
+
+
+.profile_bottom_back button {
+  display: flex;
+  flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+  align-items: center; /* จัดให้อยู่ตรงกลางตามแนวดิ่ง */
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+}
+
+.profile_bottom_back button p {
+  margin: 0; /* ลบระยะขอบของข้อความ */
+  color: white;
+  font-size: 32px;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.profile_bottom_back button img {
+  margin-left: 5px; /* เพิ่มระยะห่างด้านซ้ายของภาพ */
+}
+
+
+
+.popup button{
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+  display: flex;
+}
+
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  
+  /* The actual popup (appears on top) */
+  .popup .popuptext {
+    visibility: hidden;
+    background-color: #D9D9D9; /* เปลี่ยนสีพื้นหลังเป็นสีเทา */
+    color: #fff;
+    align-items: flex-start;
+    text-align: center;
+    border-radius: 10px; /* เพิ่มขอบโค้งให้กับกล่อง */
+    padding: 0px; /* เพิ่มพื้นที่ padding เพื่อให้ข้อความอยู่ไกลกว่าขอบ */
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; /* กำหนดความกว้างของกล่อง */
+    height: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาให้กับกล่อง */
+    opacity: 0.9; /* กำหนดค่าโปร่งแสง */
+  }
+
+  .popup .popuptext p{
+    color: #000000;
+    font-size: 48px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 0.9;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:0.9 ;}
+  }
+
+
+/*ต่อจากนี้คือของหน้าtop10*/
+.top10_main {
+  display: flex;
+  flex-direction: column;
+}
+
+.top10_head{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.top10_head button{
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.top10_head .toright{
+  transform: scaleX(-1);
+}
+
+.top10_type {
+  padding-top: 40px;
+  text-align: center;
+  font-size: 48px;
+  font-family: "Bruno Ace", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.top10_img {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns ที่มีขนาดเท่ากัน */
+  grid-gap: 40px 20px;
+  margin-bottom: 50px;
+  justify-content: center;
+  
+}
+
+/* .top10_img .top10_img_1, .top10_img_5{
+  margin-top: 60px;
+}
+
+.top10_img .top10_img_2, .top10_img_4{
+  margin-top: 40px;
+} */
+
+.top10_img img{
+  width: 200px;
+  height: auto;
+}
+
+.top10_info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.top10_info img {
+  width: 24px;
+  height: 24px;
+}
+.top10_inner{
+
+}
+
+.top10_inner p{
+  font-size: 24px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #FFFFFF;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.coin-image {
+  position: absolute;
+  top: 0; /* กำหนดตำแหน่ง top ให้เหรียญอยู่บนขอบบนของรูปที่ 3 */
+  left: 0; /* กำหนดตำแหน่ง left ให้เหรียญอยู่บนขอบซ้ายของรูปที่ 3 */
+}
+
+
+
+.top10_inner {
+  position: relative; /* ต้องกำหนดให้ parent element เป็น relative positioning เพื่อให้ absolute positioning ของเหรียญทับได้ตามต้องการ */
+}
