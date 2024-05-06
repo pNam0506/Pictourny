@@ -114,12 +114,29 @@ h2 {
 
 
 #categorySelection {
-    margin-bottom: 20px;
-    left: 20px;
+    position: relative;
+    bottom: 20px;
+    left: 520px;
+    top: -500px;
     font-family: "Athiti", sans-serif;
+    display: flex;
+    flex-direction: column; /* เรียงข้อมูลแนวตั้ง */
+    align-items: center;
+    gap: 20px;
 
 }
-.
+
+.button1{
+    font-family: "Athiti", sans-serif;
+    padding: 10px 20px;
+    
+    background-color: white;
+    color: black;
+    border: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
 .uploadedImage{
     font-family: "Athiti", sans-serif;
@@ -131,6 +148,7 @@ h2 {
     border: 50px;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s;
 }
 
 #uploadedImage {
@@ -141,6 +159,7 @@ width: 245px;
 height: 232px;
 right:  640px;
 top: 720px;
+transition: transform 0.3s;
 }
 
 .background {
@@ -173,10 +192,16 @@ top: 720px;
     border: 50px;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s;
 }
 
-button:hover {
+.button1:hover {
     background-color: #bcbcbc;
+    transform: scale(1.05); /* ปรับขนาดลงเล็กน้อยเมื่อโฮเวอร์ */
+}
+#buttonupload:hover {
+    background-color: #bcbcbc;
+    transform: scale(1.05); /* ปรับขนาดลงเล็กน้อยเมื่อโฮเวอร์ */
 }
 
 
