@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
     <title> PICTOURNY </title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -18,8 +21,8 @@
 
     <style>
         body {
+            font-family: "Athiti", sans-serif;
             background-color: #4b3a2f;
-            font-family: "Roboto", sans-serif;
             margin: 5px;
             padding: 5px;
             border-radius:0px;
@@ -107,21 +110,28 @@
         }
         
         .slick-slide {
-    transition: transform 0.5s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจนเมื่อซูม */
+        transition: transform 0.5s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจนเมื่อซูม */
+        margin: 10 20px;
 }
-
+        
         .gallery-item {
             position: relative;
-            margin-right: 20px;
+            margin: 10px;
+            margin-right: 50px;
+            margin-top: 30px;
+            margin-bottom: 30px; /* เพิ่ม margin ด้านล่าง */
             transition: transform 0.3s; /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงชัดเจน */
             cursor: pointer; /* เพิ่ม cursor pointer เมื่อนำเมาส์ไปชี้รูปภาพ */
+            display: grid; /* เปิดการใช้งาน CSS Grid Layout */
+            grid-template-columns: repeat(3, 1fr); /* สร้างกริดที่มี 3 คอลัมน์ */
+            gap: 30px; /* ระยะห่างระหว่างเซลล์ */
         }
         .slick-list{
             padding: 1000px;;
         }
         .gallery-item img {
-            width: 400px;
-            height: 490px; /* ให้ความสูงปรับตามกว้าง */
+            width: 350px;
+            height: 430px; /* ให้ความสูงปรับตามกว้าง */
             object-fit: cover; /* รักษาสัดส่วน */
             border-radius: 20px;
             display: block;
@@ -174,6 +184,32 @@
     color: #cccccc; /* สีของข้อความเมื่อโฮเวอร์ */
 }
 
+.image-text {
+    font-family: "Athiti", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 420px; /* ตำแหน่งล่างของภาพ */
+    left: 190px; /* ตำแหน่งซ้ายของภาพ */
+    color: rgb(255, 255, 255); /* สีข้อความ */
+    font-size: 18px; /* ขนาดข้อความ */
+    font-weight: bold; /* ตัวหนา */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* เงาของข้อความ */
+    margin-top: -170px; /* ปรับลดระยะห่างด้านบน */
+    opacity: 0; /* ตั้งค่าความโปร่งใสเริ่มต้นเป็น 0 */
+    transition: opacity 0.3s ease-in-out; /* เพิ่ม transition */
+}
+
+.slick-current .image-text {
+    opacity: 0.9; /* แสดงข้อความเมื่อเป็นรูปปัจจุบัน */
+}
+.gallery-item:hover .image-text {
+    opacity: 1; /* เปลี่ยนค่าความโปร่งใสเมื่อโฮเวอร์ภาพ */
+}
+
+
+
 
     </style>
     
@@ -199,38 +235,46 @@
     <div class="center">
         <div class="gallery-item" onclick="goToNextPage('cute.html')">
             <img src="c6.jpeg" alt="Cute Image 1">
+            <div class="image-text"> CUTE </div> <!-- เพิ่มข้อความ -->
             <div class="icon" onclick="toggleCheck(this)">
                 <img src="check.png" alt="Check Icon">
+        
             </div>
         </div>
         <div class="gallery-item" onclick="goToNextPage('Funny.html')">
             <img src="funny2.jpeg" alt="Funny Image 1">
+            <div class="image-text"> FUNNY </div> <!-- เพิ่มข้อความ -->
             <div class="icon" onclick="toggleCheck(this)">
                 <img src="check.png" alt="Check Icon">
             </div>
         </div>
         <div class="gallery-item" onclick="goToNextPage('Food.html')">
             <img src="f5.jpeg" alt="Food Image 1">
+            <div class="image-text"> FOOD </div> <!-- เพิ่มข้อความ -->
             <div class="icon" onclick="toggleCheck(this)">
                 <img src="check.png" alt="Check Icon">
             </div>
         </div>
         <div class="gallery-item" onclick="goToNextPage('Travel.html')">
             <img src="t1.jpeg" alt="Travel Image 1">
+            <div class="image-text"> TRAVEL </div> <!-- เพิ่มข้อความ -->
             <div class="icon" onclick="toggleCheck(this)">
                 <img src="check.png" alt="Check Icon">
             </div>
         </div>
         <div class="gallery-item" onclick="goToNextPage('Art.html')">
             <img src="a1.jpeg" alt="Art Image 1">
+            <div class="image-text"> ART </div> <!-- เพิ่มข้อความ -->
             <div class="icon" onclick="toggleCheck(this)">
                 <img src="check.png" alt="Check Icon">
             </div>
         </div>
     </div>
+   
+
 
     <div class="footer">
-        <a href="Gallery.html"><i class="fas fa-backward"></i> Back to Home</a>
+        <a href="Gallery.html"><i class="fas fa-backward"></i> ย้อนกลับ </a>
     </div>
     
 
