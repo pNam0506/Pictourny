@@ -185,17 +185,18 @@ nav{
     display: none;
   }
   
-  
   .img_info {
     display: flex;
     flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
     justify-content: space-between; /* จัดให้องค์ประกอบกระจายอยู่สองข้างของพื้นที่ */
-     margin-top: 10px;
+    margin-top: 10px;
     margin-right: 100px;
     margin-left: 130px;
-  } 
+  }
   
-   .img_info .info1,.info2,.info3{
+  
+
+  .img_info .info1,.info2,.info3{
     display: flex;
     align-items: center;
   }
@@ -207,7 +208,7 @@ nav{
     margin-top: auto;
   margin-bottom: auto;
     margin-left: 10px;
-  } 
+  }
   
   .img_info .info1 img{
     width: 52px;
@@ -224,7 +225,7 @@ nav{
     height: 45px;
   }
   
-  .ipopup .content {
+  .ipopup .content ,.content2 ,.content3 ,.content4 ,.content5 ,.content6 ,.content7 ,.content8 ,.content9{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -240,7 +241,6 @@ nav{
     border-radius: 16px;
   
   }
-  
   
   .ipopup .close-btn{
     position: absolute;
@@ -260,8 +260,66 @@ nav{
   .ipopup.active .overlay{
     display: block;
   }
+  .ipopup.active2 .overlay{
+    display: block;
+  }
+  .ipopup.active3 .overlay{
+    display: block;
+  }
+  .ipopup.active4 .overlay{
+    display: block;
+  }
+  .ipopup.active5 .overlay{
+    display: block;
+  }
+  .ipopup.active6 .overlay{
+    display: block;
+  }
+  .ipopup.active7 .overlay{
+    display: block;
+  }
+  .ipopup.active8 .overlay{
+    display: block;
+  }
+  .ipopup.active9 .overlay{
+    display: block;
+  }
   
   .ipopup.active .content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+
+  .ipopup.active2 .content2{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+
+  .ipopup.active3 .content3{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active4 .content4{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active5 .content5{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active6 .content6{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active7 .content7{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active8 .content8{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  .ipopup.active9 .content9{
     transition: all 300ms ease-in-out;
     transform: translate(-50%,-50%) scale(1);
   }
@@ -375,3 +433,97 @@ nav{
     to {opacity:0.9 ;}
   }
 
+
+/*ต่อจากนี้คือของหน้าtop10*/
+.top10_main {
+  display: flex;
+  flex-direction: column;
+}
+
+.top10_head{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.top10_head button{
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.top10_head .toright{
+  transform: scaleX(-1);
+}
+
+.top10_type {
+  padding-top: 40px;
+  text-align: center;
+  font-size: 48px;
+  font-family: "Bruno Ace", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.top10_img {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns ที่มีขนาดเท่ากัน */
+  grid-gap: 40px 20px;
+  margin-bottom: 50px;
+  justify-content: center;
+  
+}
+
+/* .top10_img .top10_img_1, .top10_img_5{
+  margin-top: 60px;
+}
+
+.top10_img .top10_img_2, .top10_img_4{
+  margin-top: 40px;
+} */
+
+.top10_img img{
+  width: 200px;
+  height: auto;
+}
+
+.top10_info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.top10_info img {
+  width: 24px;
+  height: 24px;
+}
+.top10_inner{
+
+}
+
+.top10_inner p{
+  font-size: 24px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #FFFFFF;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.coin-image {
+  position: absolute;
+  top: 0; /* กำหนดตำแหน่ง top ให้เหรียญอยู่บนขอบบนของรูปที่ 3 */
+  left: 0; /* กำหนดตำแหน่ง left ให้เหรียญอยู่บนขอบซ้ายของรูปที่ 3 */
+}
+
+
+
+.top10_inner {
+  position: relative; /* ต้องกำหนดให้ parent element เป็น relative positioning เพื่อให้ absolute positioning ของเหรียญทับได้ตามต้องการ */
+}
