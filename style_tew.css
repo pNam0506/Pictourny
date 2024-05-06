@@ -23,6 +23,14 @@ nav{
 .nevbar .profile{
   margin-left: 90px;
 }
+.nevbar .profile img{
+  width: 80px;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  justify-items: center;
+}
+
 .menu{
     display: flex;
     list-style: none;
@@ -225,6 +233,16 @@ nav{
     height: 45px;
   }
   
+  .img_name{
+    font-size: 30px;
+    font-family: "Athiti", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #1E1E1E;
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+
   .ipopup .content ,.content2 ,.content3 ,.content4 ,.content5 ,.content6 ,.content7 ,.content8 ,.content9{
     position: absolute;
     top: 50%;
@@ -491,6 +509,13 @@ nav{
 .top10_img img{
   width: 200px;
   height: auto;
+  transition: 0.5s;
+}
+
+.top10_img img:hover{
+  width: 200px;
+  height: auto;
+  margin-top: 10px;
 }
 
 .top10_info {
@@ -502,9 +527,7 @@ nav{
   width: 24px;
   height: 24px;
 }
-.top10_inner{
 
-}
 
 .top10_inner p{
   font-size: 24px;
