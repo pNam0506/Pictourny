@@ -223,10 +223,8 @@ top: 720px;
 #uploadImagetp{
     text-align: center; /* จัดข้อความให้อยู่กลาง */
     color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
-    font-family: "Montserrat", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
+    font-family: "Bruno Ace", sans-serif;
     position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
-    animation: slideUpDown 3s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 3 วินาที */
-    transition: opacity 0.3s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.3 วินาที */
 }
 
 @keyframes slideUpDown {
@@ -237,6 +235,51 @@ top: 720px;
         top: 20px; /* ลงล่างที่ 20px */
     }
 }
+
+#popupMessage {
+    font-family: "Bruno Ace", sans-serif;
+    color: rgb(255, 0, 0); /* เปลี่ยนสีตัวอักษรให้ขาว */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 1s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 1 วินาที */
+    transition: opacity 0.1s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.1 วินาที */
+    top: -150px; /* เปลี่ยนค่า top เพื่อปรับตำแหน่งของข้อความ */
+    right: 100%; /* กำหนดให้ตำแหน่งของข้อความอยู่ตรงกลางแนวนอน */
+    transform: translateX(40%); /* กำหนดให้ข้อความอยู่ตรงกลางแนวนอน */
+    font-size: 50px; /* ปรับขนาดตัวอักษร */
+}
+
+@keyframes slideUpDown {
+    0% {
+        top: 30px; /* เริ่มต้นที่ top: 30px */
+    }
+    100% {
+        top: 150; /* สิ้นสุดที่ top: 0 */
+    }
+}
+#popupMessage_suc{
+    font-family: "Bruno Ace", sans-serif;
+    color: rgb(60, 232, 60); /* เปลี่ยนสีตัวอักษรให้ขาว */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 1s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 1 วินาที */
+    transition: opacity 0.1s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.1 วินาที */
+    top: -250px; /* เปลี่ยนค่า top เพื่อปรับตำแหน่งของข้อความ */
+    right: 40%; /* กำหนดให้ตำแหน่งของข้อความอยู่ตรงกลางแนวนอน */
+    transform: translateX(40%); /* กำหนดให้ข้อความอยู่ตรงกลางแนวนอน */
+    font-size: 50px; /* ปรับขนาดตัวอักษร */
+}
+@keyframes slideUpDown {
+    0% {
+        top: 30px; /* เริ่มต้นที่ top: 30px */
+    }
+    100% {
+        top: 250; /* สิ้นสุดที่ top: 0 */
+    }
+}
+
+
+
+
+
 
     
 
@@ -268,6 +311,8 @@ top: 720px;
             <img src="upload.png" alt="Upload Image Example" class="upload-icon" onclick="openFileInput()">
             <input type="file" id="fileInput" accept="image/*" style="display: none;">
         </div>
+
+        
         
         <!-- <img src="p.jpg" alt="Upload Image Example" class="background"> -->
         <!-- <input type="file" id="fileInput" accept="image/*"> -->
@@ -285,8 +330,13 @@ top: 720px;
                 <div id="uploadedImage">
                     <button id="buttonupload" onclick="uploadImage()"> Upload </button>
                    </div>
-       
+
+                
+
+                   <div id="popupMessage" style="display: none;"></div>
+
         </div>
+        <div id="popupMessage_suc" style="display: none;"></div>
 
         
     </div>
@@ -316,28 +366,45 @@ function uploadImage() {
     const fileInput = document.getElementById('fileInput');
     const category = document.getElementById('category').value;
     const uploadedImage = document.getElementById('uploadedImage');
+    const popupMessage = document.getElementById('popupMessage');
+    const popupMessage_suc = document.getElementById('popupMessage_suc');
 
     const file = fileInput.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function() {
-        var imgData = reader.result; // ข้อมูลรูปภาพในรูปแบบ Data URL
-        var imgElement = document.createElement('img'); // สร้าง element รูปภาพ
-        imgElement.src = imgData; // กำหนดข้อมูลรูปภาพให้กับ src attribute
-        imgElement.style.maxWidth = '100%'; // กำหนดให้รูปภาพเต็มขนาด container
-        imgElement.style.maxHeight = '100%'; // กำหนดให้รูปภาพเต็มขนาด container
-        imgElement.style.borderRadius = '0rem'; // กำหนดรูปแบบ border radius
-        document.querySelector('.container-upload').innerHTML = ''; // เคลียร์เนื้อหาภายใน container-upload
-        document.querySelector('.container-upload').appendChild(imgElement); // เพิ่มรูปภาพลงใน container-upload
-    
-        }
-        reader.readAsDataURL(file);
-    } else {
-        uploadedImage.innerHTML = '<p> Please select an image.</p>';
-    }
+    const reader = new FileReader();
+    reader.onload = function() {
+        var imgData = reader.result;
+        var imgElement = document.createElement('img');
+        imgElement.src = imgData;
+        imgElement.style.maxWidth = '100%';
+        imgElement.style.maxHeight = '100%';
+        imgElement.style.borderRadius = '0rem';
+        document.querySelector('.container-upload').innerHTML = '';
+        document.querySelector('.container-upload').appendChild(imgElement);
+
+        // แสดงป๊อปอัพข้อความ
+        
+        var buttons = document.querySelectorAll('#categorySelection'); // เลือกทุกปุ่มที่มี id เป็น "category"
+        buttons.forEach(function(button) {
+    button.style.display = 'none'; // ซ่อนทุกปุ่ม
+});
+        popupMessage_suc.innerHTML = '<p> Upload successful! </p>';
+        popupMessage_suc.style.display = 'block';
+
+
+
+        
+    };
+    reader.readAsDataURL(file);
+} else {
+    // แสดงป๊อปอัพข้อความ
+    popupMessage.innerHTML = '<p> Please select an image !!! </p>';
+    popupMessage.style.display = 'block';
 }
 
+}
 
+    
     </script>
 
 </body>
