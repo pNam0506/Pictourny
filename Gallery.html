@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Bruno+Ace&display=swap" rel="stylesheet">
     
 
     <title> PICTOURNY </title>
@@ -15,43 +18,111 @@
 
     <style>
        body {
-    background-color: #4b3a2f; /* ใช้รหัสสีน้ำตาล DarkSlateBrown */
-    font-family: "Roboto", sans-serif; /* ใช้ฟอนต์ Roboto หรือฟอนต์ที่คุณต้องการ */
-    margin: 5px;
-    padding: 5px;
+            font-family: "Athiti", sans-serif;
+            background-color: #967F71;
+            margin: 5px;
+            padding: 5px;
+            border-radius:0px;
+            overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
+            cursor: url(img/mousecursor.png) , auto;
+            }
+
+        nav{
+background-color: #432626;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000; /* ให้ Navbar ของคุณอยู่ด้านหน้าของ elements อื่น */
+display: flex;
+justify-content: space-between;
+}
+.nevbar .profile{
+margin-left: 90px;
+}
+.menu{
+display: flex;
+list-style: none;
+align-items: center;
+text-indent: 50px;
+
+
+
 }
 
-.navbar {
-    background-color: #360404; /* สีพื้นหลังของแถบเมนู */
-    overflow: hidden;
+.menu li{
+margin: 0 1rem;
+
 }
 
-.navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 15px 20px;
-    text-decoration: none;
+.menu li a{
+color: #FFFFFF;
+text-decoration: none;
+font-family: "Athiti", sans-serif;
+font-weight: 400;
+font-style: normal;
 }
 
-.navbar a:hover {
-    background-color: #ddd; /* สีพื้นหลังเมื่อเม้าส์ไปชี้ */
-    color: black;
+.profile{
+display: flex;
+list-style: none;
+align-items: center;
+
+
+}
+.profile li a{
+color: #FFFFFF;
+text-decoration: none;
+}
+.search{
+background-color: rgba(217, 217, 217, 0.67);
+border-radius: 36px;
+width: 200px;
+height: 30px;
+display: flex;
+margin-top: auto;
+margin-bottom: auto;
+margin-right: 20px;
 }
 
-.search-container {
-    float: right;
+
+.profile_bottom_back button {
+  display: flex;
+  flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+  align-items: center; /* จัดให้อยู่ตรงกลางตามแนวดิ่ง */
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
 }
 
-.search-container input[type=text] {
-    padding: 10px;
-    margin-top: 5px;
-    margin-right: 16px;
-    border: none;
-    font-size: 17px;
+.profile_bottom_back button p {
+  margin: 0; /* ลบระยะขอบของข้อความ */
+  color: white;
+  font-size: 26px;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
 }
 
+.profile_bottom_back button img {
+  margin-left: 5px; /* เพิ่มระยะห่างด้านซ้ายของภาพ */
+}
+
+.search img{
+width: 11px;
+height: 10px;
+margin-right: 10px;
+margin-top : auto;
+margin-bottom: auto;
+}
+
+.search input{
+background : none;
+  border: none;
+  outline : none;
+  width: 200px;
+  height: 23px;
+}
 .gallery {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -84,7 +155,7 @@
 .gallery-title {
     text-align: center; /* จัดข้อความให้อยู่กลาง */
     color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
-    font-family: "Bruno Ace", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
+    font-family: "Montserrat", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
 }
 
 .gallery-title {
@@ -126,22 +197,23 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <a href="profile.html" class="profile-icon"> PROFILE </a>
-        <a href="pictourny.html"> Pictourny </a>
-        <a href="gallery.html"> Gallery </a>
-        <a href="top10.html"> Top 10 </a>
-        <a href="upload_pic.html"> Upload Pic </a>
-       
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="ค้นหา.." name="search">
-                <button type="submit"> search </button>
-            </form>
+    <nav class="nevbar">
+        <div class="profile">
+            <li><a href="">Profile</a></li>
         </div>
-    
-    </div>
-</div>
+        <ul class="menu">
+            <li><a href="">Pictourny</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Top 10</a></li>
+            <li><a href="">Upload Pic</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="" >
+            <img src="img/search.png" alt="">
+        </div>
+        
+    </nav>
+
 
 
 <h1 class="gallery-title"> Gallery </h1>
@@ -168,8 +240,14 @@
     <div class="gallery-item"><img src="14.jpeg" alt="Image 14"></div>
     <div class="gallery-item"><img src="15.jpeg" alt="Image 15"></div>
     
-    <div class="footer">
-        <a href="Pictourny.html"><i class="fas fa-backward"></i> Back to Home</a>
+    <div class="profile_bottom_back">
+        <a href="Gallery.html">
+            <button>
+                <img src="img/back.png" alt="">
+                <p>ย้อนกลับ</p>
+            </button>
+            
+        </a>
     </div>
     
 

@@ -22,54 +22,110 @@
     <style>
         body {
             font-family: "Athiti", sans-serif;
-            background-color: #4b3a2f;
+            background-color: #967F71;
             margin: 5px;
             padding: 5px;
             border-radius:0px;
             overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
+            cursor: url(img/mousecursor.png) , auto;
         }
     
-        .navbar {
-            background-color: #360404;
-            overflow: hidden;
-            border-radius: 20px;
-            padding: 10px;
-        }
-    
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-            border-radius: 10px;
-        }
-    
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            border-radius: 10px;
-        }
-    
-        .search-container {
-            float: right;
-            border-radius: 20px;
-        }
-    
-        .search-input {
-            padding: 10px 30px 10px 10px;
-            border-radius: 20px;
-            background-color: #ffffff;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    
-        .search-icon {
-            width: 20px;
-            height: 20px;
-            margin: 15px;
-        }
+        nav{
+background-color: #432626;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000; /* ให้ Navbar ของคุณอยู่ด้านหน้าของ elements อื่น */
+display: flex;
+justify-content: space-between;
+}
+.nevbar .profile{
+margin-left: 90px;
+}
+.menu{
+display: flex;
+list-style: none;
+align-items: center;
+text-indent: 50px;
+
+
+
+}
+
+.menu li{
+margin: 0 1rem;
+
+}
+
+.menu li a{
+color: #FFFFFF;
+text-decoration: none;
+font-family: "Athiti", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+
+.profile{
+display: flex;
+list-style: none;
+align-items: center;
+
+
+}
+.profile li a{
+color: #FFFFFF;
+text-decoration: none;
+}
+.search{
+background-color: rgba(217, 217, 217, 0.67);
+border-radius: 36px;
+width: 200px;
+height: 30px;
+display: flex;
+margin-top: auto;
+margin-bottom: auto;
+margin-right: 20px;
+}
+
+
+.profile_bottom_back button {
+  display: flex;
+  flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+  align-items: center; /* จัดให้อยู่ตรงกลางตามแนวดิ่ง */
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+}
+
+.profile_bottom_back button p {
+  margin: 0; /* ลบระยะขอบของข้อความ */
+  color: white;
+  font-size: 26px;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.profile_bottom_back button img {
+  margin-left: 5px; /* เพิ่มระยะห่างด้านซ้ายของภาพ */
+}
+
+.search img{
+width: 11px;
+height: 10px;
+margin-right: 10px;
+margin-top : auto;
+margin-bottom: auto;
+}
+
+.search input{
+background : none;
+  border: none;
+  outline : none;
+  width: 200px;
+  height: 23px;
+}
     
         body {
     font-family: Arial, sans-serif;
@@ -289,20 +345,22 @@ top: 720px;
 
 <body>
 
-    <div class="navbar">
-        <a href="profile.html" class="profile-icon">PROFILE</a>
-        <a href="pictourny.html">Pictourny</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="top10.html">Top 10</a>
-        <a href="upload_pic.html">Upload Pic</a>
-
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="ค้นหา.." name="search" class="search-input">
-                <button type="submit" class="search-icon">search</button>
-            </form>
+    <nav class="nevbar">
+        <div class="profile">
+            <li><a href="">Profile</a></li>
         </div>
-    </div>
+        <ul class="menu">
+            <li><a href="">Pictourny</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Top 10</a></li>
+            <li><a href="">Upload Pic</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="" >
+            <img src="img/search.png" alt="">
+        </div>
+        
+    </nav>
 
     <div class="container">
         <h2 id="uploadImagetp">  Upload Image </h2>
@@ -341,7 +399,15 @@ top: 720px;
         
     </div>
 
-
+    <div class="profile_bottom_back">
+        <a href="Gallery.html">
+            <button>
+                <img src="img/back.png" alt="">
+                <p>ย้อนกลับ</p>
+            </button>
+            
+        </a>
+    </div>
 
 
 
