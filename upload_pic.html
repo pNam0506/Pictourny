@@ -144,10 +144,11 @@ background : none;
     width: 786px;
     height: 476px;
     background-color: #ffffff;
-    border-radius: 5rem;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .upload-icon{
 
@@ -176,21 +177,29 @@ h2 {
     left: 520px;
     top: -500px;
     font-family: "Athiti", sans-serif;
+    font-size: 32px;
+    margin-top: -40px;
     display: flex;
     flex-direction: column; /* เรียงข้อมูลแนวตั้ง */
     align-items: center;
     gap: 20px;
+    color: white;
+
 
 }
 
 .button1{
     font-family: "Athiti", sans-serif;
+    font-size: 40px;
+    justify-items: center;
     padding: 10px 20px;
-    
-    background-color: white;
-    color: black;
+    width: 223px;
+    height: 83px;
+    background-color: black;
+    opacity: 0.57;
+    color: white;
     border: 50px;
-    border-radius: 10px;
+    border-radius: 19px;
     cursor: pointer;
     transition: transform 0.3s;
 }
@@ -266,15 +275,18 @@ top: 720px;
 #buttonupload{
     position: relative;
     font-family: "Athiti", sans-serif;
+    font-size: 35px;
+    
     padding: 10px 20px;
     top: -200px;
     right: 150px;
-    background-color: #ffffff;
-    color: #000000;
-    border: 50px;
-    border-radius: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 1000px;
     cursor: pointer;
     transition: transform 0.3s;
+    margin-top: 30px;
 }
 
 .button1:hover {
@@ -396,7 +408,8 @@ top: 720px;
                 <button id="category" class="button1" value="cute">Cute</button>
            
                 <div id="uploadedImage">
-                    <button id="buttonupload" onclick="uploadImage()"> Upload </button>
+                    <button id="buttonupload" onclick="uploadImage()"> <span>&#10003;</span> </button>
+                    <div></div>
                    </div>
 
                 
