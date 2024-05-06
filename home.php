@@ -24,7 +24,7 @@
 
         function redirectToNewPage() {
             
-            window.location.href = "new_page.html"; 
+            window.location.href = "profile.html"; 
         }
     </script>
     
