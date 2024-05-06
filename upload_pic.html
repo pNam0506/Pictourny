@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Bruno+Ace&display=swap" rel="stylesheet">
     
     <title> PICTOURNY </title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -152,14 +152,29 @@ h2 {
 }
 
 #uploadedImage {
-    font-family: "Athiti", sans-serif; 
+    font-family: "Bruno Ace", sans-serif;
     margin-top: 10px;
 position: absolute;
 width: 245px;
 height: 232px;
 right:  640px;
 top: 720px;
-transition: transform 0.3s;
+
+}
+
+#fileName{
+    position: relative;
+    left:  70px;
+    font-family: "Athiti", sans-serif;
+    padding: 10px 20px;
+    top: -200px;
+    margin-right: 250px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 50px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+
 }
 
 .background {
@@ -183,10 +198,11 @@ transition: transform 0.3s;
 } */
 
 #buttonupload{
+    position: relative;
     font-family: "Athiti", sans-serif;
     padding: 10px 20px;
-    top: -10px;
-    margin-right: 250px;
+    top: -200px;
+    right: 150px;
     background-color: #ffffff;
     color: #000000;
     border: 50px;
@@ -204,6 +220,25 @@ transition: transform 0.3s;
     transform: scale(1.05); /* ปรับขนาดลงเล็กน้อยเมื่อโฮเวอร์ */
 }
 
+#uploadImagetp{
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
+    font-family: "Montserrat", sans-serif; /* ใช้ฟอนต์ Montserrat หรือฟอนต์ที่คุณต้องการ */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 3s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 3 วินาที */
+    transition: opacity 0.3s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.3 วินาที */
+}
+
+@keyframes slideUpDown {
+    0% {
+        top: 0; /* เริ่มต้นที่ด้านบน */
+    }
+    100% {
+        top: 20px; /* ลงล่างที่ 20px */
+    }
+}
+
+    
 
     </style>
     
@@ -227,7 +262,7 @@ transition: transform 0.3s;
     </div>
 
     <div class="container">
-        <h2> Upload Image </h2>
+        <h2 id="uploadImagetp">  Upload Image </h2>
         
         <div class="container-upload">
             <img src="upload.png" alt="Upload Image Example" class="upload-icon" onclick="openFileInput()">
@@ -247,13 +282,13 @@ transition: transform 0.3s;
                 <button id="category" class="button1"  value="art">Art</button>
                 <button id="category" class="button1" value="cute">Cute</button>
            
+                <div id="uploadedImage">
+                    <button id="buttonupload" onclick="uploadImage()"> Upload </button>
+                   </div>
        
         </div>
 
-        <div id="uploadedImage">
-        <input type="text" id="fileName" placeholder="Enter file name">
-        <button id="buttonupload" onclick="uploadImage()"> Upload </button>
-       </div>
+        
     </div>
 
 
