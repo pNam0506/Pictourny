@@ -26,7 +26,7 @@
                         </div> <br>";
                         echo "<a href=''><button class='btn-back'>back</button></a>";
                 } else {
-                    $verify_query = mysqli_query($conn,"SELECT users_Email FROM sign_up WHERE users_Email = '$users_Email'");
+                    $verify_query = mysqli_query($conn,"SELECT users_Email FROM Sign_Up WHERE users_Email = '$users_Email'");
 
                     if(mysqli_num_rows($verify_query) != 0 ){
                         echo "<div class='message'>
@@ -34,7 +34,7 @@
                             </div> <br>";
                             echo "<a href=''><button class='btn-back'>back</button></a>";
                     } else {
-                        mysqli_query($conn,"INSERT INTO sign_up(users_Name,users_Email,users_Password) VALUES('$users_Name','$users_Email','$users_Password')") or die("Error Occurred");
+                        mysqli_query($conn,"INSERT INTO Sign_Up(users_Name,users_Email,users_Password) VALUES('$users_Name','$users_Email','$users_Password')") or die("Error Occurred");
 
                         echo "<div class='message'>
                                 <p>Registration successful</p>
