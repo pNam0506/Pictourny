@@ -18,7 +18,7 @@
                 $users_Email = mysqli_real_escape_string($conn,$_POST['Email']);
                 $users_Password = mysqli_real_escape_string($conn,$_POST['Password']);
 
-                $result = mysqli_query($conn,"SELECT * FROM sign_up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
+                $result = mysqli_query($conn,"SELECT * FROM Sign_Up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
                 $row = mysqli_fetch_assoc($result);
                 if(is_array($row) && !empty($row)){
                     $_SESSION['valid'] = $row['users_Email'];
