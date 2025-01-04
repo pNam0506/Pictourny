@@ -12,7 +12,7 @@
         <div class="box form-box">
             
             <?php
-            include("./config.php");
+             include(__DIR__ . '/config.php');
             if(isset($_POST['submit'])){
                 $users_Name = $_POST['UserName'];
                 $users_Email = $_POST['Email'];

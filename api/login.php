@@ -29,7 +29,7 @@
                     echo "<a href=''><button class='btn-back'>back</button></a>";
                 }
                 if(isset($_SESSION['valid'])){
-                    header("location: home.php");
+                    header("location: ../home.php");
                 }
             }else{
     
