@@ -30,7 +30,7 @@
                 }
                 if(isset($_SESSION['valid'])){
         
-                    header("location: /home.php");
+                    header("location:../home.html");
                 }
             }else{?>
             <header id="login"> LOGIN</header>
