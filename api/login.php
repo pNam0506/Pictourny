@@ -14,7 +14,7 @@
             <div class="box-login form-box">
                 <?php
 // เรียก session_start() ที่จุดเริ่มต้น
-session_start(); 
+
 
 include(__DIR__ . '/config.php');
 
