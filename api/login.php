@@ -13,9 +13,10 @@
         <div class="container">
             <div class="box-login form-box">
                 <?php
-include(__DIR__ . '/config.php');
+// เรียก session_start() ที่จุดเริ่มต้น
+session_start(); 
 
-session_start(); // เริ่มต้น session ถ้ายังไม่ได้เริ่ม
+include(__DIR__ . '/config.php');
 
 if(isset($_POST['submit'])){
     $users_Email = mysqli_real_escape_string($conn, $_POST['Email']);
@@ -62,6 +63,7 @@ if(isset($_POST['submit'])){
                     </div>
                 </form>
                 <?php } ?>
+
 
             </div>
 
