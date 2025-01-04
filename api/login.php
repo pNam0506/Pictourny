@@ -12,8 +12,7 @@
 <div class="background-login">
     <div class="container">
         <div class="box-login form-box">
-            <?php
-                include(__DIR__ . '/config.php');
+            <?php include(__DIR__ . '/config.php');
                 if(isset($_POST['submit'])){
                 $users_Email = mysqli_real_escape_string($conn,$_POST['Email']);
                 $users_Password = mysqli_real_escape_string($conn,$_POST['Password']);
