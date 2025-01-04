@@ -13,6 +13,7 @@ $conn = new mysqli($host, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die('Connection failed: ' . $mysqli->connect_error);
 }
+else echo'connection complete'
 
 
 // ข้อมูลการเชื่อมต่อฐานข้อมูลจาก JSON
