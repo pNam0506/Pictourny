@@ -30,8 +30,7 @@
                 }
                 if(isset($_SESSION['valid'])){
         
-                //     header("location:../home.php");
-                    echo('สวัสดีจ้า')
+                    header("location:../home.php");
                 }
             }else{?>
             <header id="login"> LOGIN</header>
