@@ -7,7 +7,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/api/login.php",
+      "destination": "/api/login.html",
       "permanent": false
     }
   ],
