@@ -1,10 +1,9 @@
 {
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "./login.php",
-        "permanent": true
-      }
-    ]
-  }
-  
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/login.php",
+      "permanent": true
+    }
+  ]
+}
