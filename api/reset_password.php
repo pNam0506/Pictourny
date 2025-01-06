@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>forgot password</title>
 </head>
 <body>
@@ -16,8 +16,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once(__DIR__.'config.php');
-require_once(__DIR__.'./phpmailer/vendor/autoload.php');
+require_once(__DIR__ . 'config.php');
+
+require_once(__DIR__ . './phpmailer/vendor/autoload.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
