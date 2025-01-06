@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>login</title>
 </head>
 
@@ -29,11 +29,11 @@
                 }
                 if(isset($_SESSION['valid'])){
         
-                    header("location:../home.php");
+                    header("location:./home.php");
                 }
             }else{?>
             <header id="login"> LOGIN</header>
-            <img src="./Rectangle 31.png" id="logo">
+            <img src="../Rectangle 31.png" id="logo">
             <form action="" method="post">
                 <div class="field input">
                     <label for="Email">Email</label>
@@ -52,12 +52,12 @@
                 </div>
                 <div class="link sign-up">
 
-                    <a href="./sign_up.html">Sign Up</a>
+                    <a href="../sign_up.html">Sign Up</a>
 
                 </div>
                 <div class="link forgot-password">
 
-                    <a href="./reset_password.html">Forgot Password</a>
+                    <a href="../reset_password.html">Forgot Password</a>
 
                 </div>
 
