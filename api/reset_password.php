@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Update the user's record in the database with the token and expiration time
         $expires_at = date('Y-m-d H:i:s'); // Token expiration time (1 hour from now)
         $token_hash = hash("sha256", $token);
-        $update_query = "UPDATE sign_up SET reset_token_hash = '$token_hash', reset_token_expires_at = '$expires_at' WHERE users_Email = '$email'";
+        $update_query = "UPDATE Sign_Up SET reset_token_hash = '$token_hash', reset_token_expires_at = '$expires_at' WHERE users_Email = '$email'";
         mysqli_query($conn, $update_query);
 
         if(mysqli_affected_rows($conn) > 0) {
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
                 <header id="forgot-password"> FORGOT PASSWORD</header>
-                    <img src="./Rectangle 31.png" id="logo">
+                    <img src="../Rectangle 31.png" id="logo">
                 
                 <form action="./reset_password.php" method="post">
                     <div class="field input">
