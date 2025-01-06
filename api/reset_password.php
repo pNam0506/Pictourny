@@ -16,8 +16,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once('config.php');
-require_once('../phpmailer/vendor/autoload.php');
+require_once(__DIR__.'config.php');
+require_once(__DIR__.'./phpmailer/vendor/autoload.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
