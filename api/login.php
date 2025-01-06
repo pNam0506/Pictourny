@@ -1,7 +1,7 @@
 <?php
 // Include configuration and start session
 include(__DIR__ . '/config.php');
-session_start(); // Start the session
+// session_start(); // Start the session
 
 $error_message = ""; // Initialize error message
 
