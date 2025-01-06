@@ -7,9 +7,9 @@ if (!isset($_GET['token'])) {
 $token = $_GET['token'];
 $token_hash = hash("sha256", $token);
 
-require_once('config.php');
+require_once(__DIR__. 'config.php');
 
-$sql = "SELECT * FROM sign_up WHERE reset_token_hash = ?";
+$sql = "SELECT * FROM Sign_Up WHERE reset_token_hash = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Failed to prepare statement: " . $conn->error);
