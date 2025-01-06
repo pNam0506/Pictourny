@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
     if (is_array($row) && !empty($row)) {
         $_SESSION['valid'] = $row['users_Email'];
         $_SESSION['username'] = $row['users_Name'];
-        
         header("Location: ./home.php");
         exit; // Stop further script execution
     } else {
