@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->setFrom("pinmanee.business@gmail.com","Pictureny");
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
-            $mail->Body = "Click <a href='http://localhost:3000/reset-password.php?token=$token'>here</a> to reset your password.";
+            $mail->Body = "Click <a href='http://localhost:3000/api/reset-password.php?token=$token'>here</a> to reset your password.";
 
             try {
                 $mail->send();

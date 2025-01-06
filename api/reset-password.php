@@ -35,7 +35,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
             <!DOCTYPE html>
         <html>
         <head>
-        <link rel='stylesheet' href='./style.css'>
+        <link rel='stylesheet' href='../style.css'>
             <title>Reset Password</title>
         </head>
         <body>

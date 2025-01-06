@@ -4,9 +4,9 @@ $token = $_POST['token'];
 
 $token_hash = hash("sha256", $token);
 
-require_once(__DIR__.'config.php');
+require_once(__DIR__.'/config.php');
 
-$sql = "SELECT * FROM sign_up WHERE reset_token_hash = ?";
+$sql = "SELECT * FROM Sign_Up WHERE reset_token_hash = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Failed to prepare statement: " . $conn->error);
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<!DOCTYPE html>
         <html>
         <head>
-        <link rel='stylesheet' href='./style.css'>
+        <link rel='stylesheet' href='../style.css'>
             <title>Reset Password</title>
         </head>
         <body>
