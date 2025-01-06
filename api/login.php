@@ -1,19 +1,27 @@
 <?php
+// Include configuration and start session
 include(__DIR__ . '/config.php');
-session_start(); // Ensure session is started
+session_start(); // Start the session
+
+$error_message = ""; // Initialize error message
 
 if (isset($_POST['submit'])) {
+    // Escape input values
     $users_Email = mysqli_real_escape_string($conn, $_POST['Email']);
     $users_Password = mysqli_real_escape_string($conn, $_POST['Password']);
 
+    // Query the database
     $result = mysqli_query($conn, "SELECT * FROM Sign_Up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
     $row = mysqli_fetch_assoc($result);
 
     if (is_array($row) && !empty($row)) {
+        // Set session variables
         $_SESSION['valid'] = $row['users_Email'];
         $_SESSION['username'] = $row['users_Name'];
+        
+        // Redirect to home page
         header("Location: ./home.php");
-        exit; // Stop further script execution
+        exit(); // Ensure no further script execution
     } else {
         $error_message = "Invalid email or password. Please try again.";
     }
@@ -36,7 +44,7 @@ if (isset($_POST['submit'])) {
                 <header id="login">LOGIN</header>
                 <img src="../Rectangle 31.png" id="logo">
                 <?php if (!empty($error_message)): ?>
-                    <p><?php echo $error_message; ?></p>
+                    <p><?php echo htmlspecialchars($error_message); ?></p>
                     <a href=""><button class="btn-back">Back</button></a>
                 <?php endif; ?>
                 <form action="" method="post">
