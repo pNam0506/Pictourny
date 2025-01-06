@@ -4,7 +4,7 @@ $token = $_POST['token'];
 
 $token_hash = hash("sha256", $token);
 
-require_once('config.php');
+require_once(__DIR__.'config.php');
 
 $sql = "SELECT * FROM sign_up WHERE reset_token_hash = ?";
 $stmt = $conn->prepare($sql);
