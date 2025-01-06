@@ -18,8 +18,8 @@ if (isset($_POST['submit'])) {
         // Set session variables
         $_SESSION['valid'] = $row['users_Email'];
         $_SESSION['username'] = $row['users_Name'];
-        http_response_code(302); // หรือ 301 สำหรับ Permanent Redirect
-        echo "Redirecting to <a href='./home.php'>home</a>...";
+        // http_response_code(302); // หรือ 301 สำหรับ Permanent Redirect
+        echo '<meta http-equiv="refresh" content="0;url=./home.php">';
         exit();
         
         // Redirect to home page
