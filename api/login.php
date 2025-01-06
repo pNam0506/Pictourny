@@ -1,8 +1,6 @@
 <?php
 // Include configuration and start session
 include(__DIR__ . '/config.php');
-// session_start(); // Start the session
-
 $error_message = ""; // Initialize error message
 
 if (isset($_POST['submit'])) {
@@ -13,7 +11,8 @@ if (isset($_POST['submit'])) {
     // Query the database
     $result = mysqli_query($conn, "SELECT * FROM Sign_Up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
     $row = mysqli_fetch_assoc($result);
-
+    
+    session_start();
     if (is_array($row) && !empty($row)) {
         // Set session variables
         $_SESSION['valid'] = $row['users_Email'];
