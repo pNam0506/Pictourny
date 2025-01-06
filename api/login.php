@@ -48,7 +48,6 @@ if (isset($_POST['submit'])) {
                 <img src="../Rectangle 31.png" id="logo">
                 <?php if (!empty($error_message)): ?>
                 <p><?php echo htmlspecialchars($error_message); ?></p>
-                <a href=""><button class="btn-back">Back</button></a>
                 <?php endif; ?>
                 <form action="" method="post">
                     <div class="field input">
