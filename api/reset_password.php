@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
 
     // Check if the email exists in the database
-    $query = "SELECT * FROM sign_up WHERE users_Email = '$email'";
+    $query = "SELECT * FROM Sign_Up WHERE users_Email = '$email'";
+
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
