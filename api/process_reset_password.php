@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $user['users_Email']; // Assuming the email is retrieved from the database
 
         // Prepare and execute the SQL UPDATE query
-        $sql = "UPDATE sign_up SET users_Password = ? WHERE users_Email = ?";
+        $sql = "UPDATE Sign_Up SET users_Password = ? WHERE users_Email = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<!DOCTYPE html>
                 <html>
                 <head>
-                <link rel='stylesheet' href='./style.css'>
+                <link rel='stylesheet' href='../style.css'>
                     <title>Reset Password</title>
                 </head>
                 <body>
