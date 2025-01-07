@@ -23,7 +23,8 @@
 
         function redirectToNewPage() {
             
-            window.location.href = "../profile.html"; 
+            window.location.href = 'http://localhost:3000/api/profile.php?username=' + <?php echo json_encode($_GET['username']); ?>;
+
         }
     </script>
     

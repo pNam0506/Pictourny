@@ -13,15 +13,17 @@ if (isset($_POST['submit'])) {
     $row = mysqli_fetch_assoc($result);
 
     ob_start();
-
+    
     if (is_array($row) && !empty($row)) {
         // Set session variables
         $_SESSION['valid'] = $row['users_Email'];
         $_SESSION['username'] = $row['users_Name'];
-        // http_response_code(302); // หรือ 301 สำหรับ Permanent Redirect
-        echo '<meta http-equiv="refresh" content="0;url=./home.php">';
-        exit();
         
+        echo '<meta http-equiv="refresh" content="0;url=http://localhost:3000/api/home.php?username=' . $_SESSION['username'] . '">';
+        // echo '<meta http-equiv="refresh" content="0;url=http://localhost:3000/api/profile.php?username=' . $_SESSION['username'] . '">';
+
+        // exit();
+        // echo "<a href='http://localhost:3000/api/profile.php?username=" . $_SESSION['username'] . "'>Go to Profile</a>";
         // Redirect to home page
         // header("Location: ./home.php");
         // exit(); // Ensure no further script execution
