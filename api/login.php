@@ -8,8 +8,9 @@ if (isset($_POST['submit'])) {
     $users_Email = mysqli_real_escape_string($conn, $_POST['Email']);
     $users_Password = mysqli_real_escape_string($conn, $_POST['Password']);
 
+
     // Query the database
-    $result = mysqli_query($conn, "SELECT * FROM Sign_Up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password'");
+    $result = mysqli_query($conn, "SELECT * FROM Sign_Up WHERE users_Email = '$users_Email' AND users_Password = '$users_Password' AND ID");
     $row = mysqli_fetch_assoc($result);
 
     ob_start();
@@ -18,8 +19,9 @@ if (isset($_POST['submit'])) {
         // Set session variables
         $_SESSION['valid'] = $row['users_Email'];
         $_SESSION['username'] = $row['users_Name'];
+        $_SESSION['Id'] = $row['ID'];
         
-        echo '<meta http-equiv="refresh" content="0;url=http://localhost:3000/api/home.php?username=' . $_SESSION['username'] . '">';
+        echo '<meta http-equiv="refresh" content="0;url=http://localhost:3000/api/home.php?username=' . $_SESSION['username'] . '&Id=' . $_SESSION['Id'] . '">';
         // echo '<meta http-equiv="refresh" content="0;url=http://localhost:3000/api/profile.php?username=' . $_SESSION['username'] . '">';
 
         // exit();

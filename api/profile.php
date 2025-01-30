@@ -1,12 +1,80 @@
 <?php
+    include(__DIR__ . '/config.php');
 
     if(empty($_GET['username'])){
         echo 'ไม่มี';
     }
     
+    $Id = $_GET['Id'];
+    
+    include(__DIR__.'/config.php');
+
     $username = $_GET['username'];
+    $name = $username;
+
+        if(isset($_POST['submit'])){
+            if(isset($_FILES["image"]["name"])){
+                $user_id = $Id;
+                // $image = $_POST['image'];
+
+                $imageName = $_FILES["image"]["name"];
+                $imageSize = $_FILES["image"]["size"];
+                $tmpName = $_FILES["image"]["tmp_name"];
+
+                $ValidImageExtension = ['jpg', 'jpeg', 'png'];
+                $imageExtension = explode('.', $imageName);
+                $imageExtension = strtolower(end($imageExtension));
+                if(!in_array($imageExtension, $ValidImageExtension)){
+                    echo
+                    "
+                        <Script>
+                        
+                        alert('invalid image Extension');
+                        
+
+                        </Script>
+
+                    ";
+                }
+
+                elseif($imageSize > 1200000){
+                    echo
+                    "
+                        <script>
+                            alert('Image Size Is Too Large');
+                            
+                        </script>
+
+                    ";
+                }
+                else{
+                    $newImageName = $name . " - " . date("Y.m.d."). " - " . date("h.i.sa");
+                    $newImageName .= "." . $imageExtension; 
+                    $query = "UPDATE images SET image = '$newImageName' WHERE user_id = $Id";
+                    mysqli_query($conn,$query);
+                    move_uploaded_file($tmpName,'../img/' . $newImageName);
+                    // echo
+                    // "
+                    // <script>
+                    //     window.location.reload();
+                    // </script>
+                    // ";
+
+                }
+               
+
+            }
+
+        
+            
+        }
+
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM images WHERE user_id = $Id"));
+
+    $image = $result["image"];
     
 
+    
     
 ?>
 <!DOCTYPE html>
@@ -21,6 +89,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="jquery-3.7.1.min.js"></script>
     <link rel="icon" type="image/png" href="img/title.png">
+
+    <style>
+        #image{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
 </head>
 <body>
 
@@ -45,13 +120,22 @@
     </nav>
     <div class="main">
         <section class="profile_body">
-        
-        <div class="profile_body1">
-            <div class="profile_body1_1">
-                <p><?php echo htmlspecialchars($username); ?></p>
+
+        <form action="" method="post" enctype="multipart/form-data" id="form">
+            <div class="profile_body1">
+                <div class="profile_body1_1" style="margin-top: 100px;">
+                    <p><?php echo htmlspecialchars($name); ?></p>
+                </div>
+                <div>
+                    <img src="../img/<?php echo $image; ?>" alt="Uploaded Image" width="200" height="200"  onclick="openFileInput()">
+            
+                </div>
             </div>
             <div class="profile_body1_2">
-                <img src="../profile.png" alt="">
+                <input type="file" name="image" id="image" accept=".png, .jpg"/>
+            </div>
+            <div>
+            <input type="submit" name="submit"/>
             </div>
             <div class="profile_body1_3">
                 <div id="pro1" class="profile_body1_3_text">จำนวนรูปภาพที่อัพ</div>
@@ -60,8 +144,69 @@
                 <div id="pro4" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 2</div>
                 <div id="pro5" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 3</div>
                 <div id="pro6" class="profile_body1_3_text">หมวดที่อัปบ่อยที่สุด...</div>
-        </div>
-        
+            </div>
+        </form>
+        <!-- <script type="text/javascript">
+            document.getElementById("image").onchange =function(){
+                document.getElementById("form").submit();
+            }
+
+        </script> -->
+        <?php 
+                // if(isset($_FILES["image"]["name"])){
+                //     $user_id = $Id;
+                //     $image = $_POST['image'];
+
+                //     $imageName = $_FILES["image"]["name"];
+                //     $imageSize = $_FILES["image"]["size"];
+                //     $tmpName = $_FILES["image"]["tmp_name"];
+
+                //     $ValidImageExtension = ['jpg', 'jpeg', 'png'];
+                //     $imageExtension = explode('.', $imageName);
+                //     $imageExtension = strtolower(end($imageExtension));
+                //     if(!in_array($imageExtension, $ValidImageExtension)){
+                //         echo
+                //         "
+                //             <Script>
+                            
+                //             alert('invalid image Extension');
+                            
+
+                //             </Script>
+
+                //         ";
+                //     }
+
+                //     elseif($imageSize > 1200000){
+                //         echo
+                //         "
+                //             <script>
+                //                 alert('Image Size Is Too Large');
+                                
+                //             </script>
+
+                //         ";
+                //     }
+                //     else{
+                //         $newImageName = $name . " - " . date("Y.m.d."). " - " . date("h.i.sa");
+                //         $newImageName .= "." . $imageExtension; 
+                //         $query = "UPDATE images SET image = '$newImageName' WHERE user_id = $Id";
+                //         mysqli_query($conn,$query);
+                //         move_uploaded_file($tmpName,'../img/' . $newImageName);
+                //         // echo
+                //         // "
+                //         // <script>
+                //         //     window.location.reload();
+                //         // </script>
+                //         // ";
+
+                //     }
+                   
+
+                // }
+
+            
+            ?>
         
         </div>
         
