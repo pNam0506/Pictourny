@@ -1,0 +1,546 @@
+<?php 
+
+
+    
+include(__DIR__.'/config.php');
+
+$Id = $_GET['Id'];
+
+$username = $_GET['username'];
+$name = $username;
+if (isset($_POST['submit'])) {
+    if (isset($_FILES["image"]["name"])) {
+        $user_id = mysqli_real_escape_string($conn, $Id);
+        $imageName = $_FILES["image"]["name"];
+        $imageSize = $_FILES["image"]["size"];
+        $tmpName = $_FILES["image"]["tmp_name"];
+
+        $ValidImageExtension = ['jpg', 'jpeg', 'png'];
+        $imageExtension = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+
+        if (!in_array($imageExtension, $ValidImageExtension)) {
+            echo "<script>alert('Invalid image extension');</script>";
+        } elseif ($imageSize > 1200000) {
+            echo "<script>alert('Image size is too large');</script>";
+        } else {
+            $newImageName = $name . "-" . date("Y.m.d-H.i.s") . "." . $imageExtension;
+            $newImageName = mysqli_real_escape_string($conn, $newImageName);
+
+            $query = "INSERT INTO images (image, name, user_id) VALUES ('$newImageName', 'gallery', '$user_id')";
+            if (mysqli_query($conn, $query)) {
+                move_uploaded_file($tmpName, "../img/" . $newImageName);
+                echo "<script>alert('Upload Successful!');</script>";
+            } else {
+                echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
+            }
+        }
+    }
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Bruno+Ace&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../img/title.png">
+    <title> PICTOURNY </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    <style>
+        body {
+            font-family: "Athiti", sans-serif;
+            background-color: #967F71;
+            margin: 5px;
+            padding: 5px;
+            border-radius:0px;
+            overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
+            cursor: url(img/mousecursor.png) , auto;
+        }
+    
+        nav{
+background-color: #432626;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000; /* ให้ Navbar ของคุณอยู่ด้านหน้าของ elements อื่น */
+display: flex;
+justify-content: space-between;
+margin-left: -20px;
+}
+.nevbar .profile{
+margin-left: 90px;
+}
+.menu{
+display: flex;
+list-style: none;
+align-items: center;
+text-indent: 50px;
+
+
+
+}
+
+.menu li{
+margin: 0 1rem;
+
+}
+
+.menu li a{
+color: #FFFFFF;
+text-decoration: none;
+font-family: "Athiti", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+
+.profile{
+display: flex;
+list-style: none;
+align-items: center;
+
+
+}
+.profile li a{
+color: #FFFFFF;
+text-decoration: none;
+}
+.search{
+background-color: rgba(217, 217, 217, 0.67);
+border-radius: 36px;
+width: 200px;
+height: 30px;
+display: flex;
+margin-top: auto;
+margin-bottom: auto;
+margin-right: 20px;
+}
+
+
+.profile_bottom_back button {
+  display: flex;
+  flex-direction: row; /* จัดเรียงองค์ประกอบแนวนอน */
+  align-items: center; /* จัดให้อยู่ตรงกลางตามแนวดิ่ง */
+  background-color: transparent; /* กำหนดให้พื้นหลังของปุ่มเป็นโปร่งแสง */
+  border: none; /* ลบเส้นขอบ */
+  padding: 0; /* ลบระยะห่างของข้อความกับขอบของปุ่ม */
+}
+
+.profile_bottom_back button p {
+  margin: 0; /* ลบระยะขอบของข้อความ */
+  color: white;
+  font-size: 26px;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.profile_bottom_back button img {
+  margin-left: 5px; /* เพิ่มระยะห่างด้านซ้ายของภาพ */
+}
+
+.search img{
+width: 11px;
+height: 10px;
+margin-right: 10px;
+margin-top : auto;
+margin-bottom: auto;
+}
+
+.search input{
+background : none;
+  border: none;
+  outline : none;
+  width: 200px;
+  height: 23px;
+}
+    
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.container-upload{
+    width: 786px;
+    height: 476px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.upload-icon{
+
+width: 245px;
+height: 232px;
+margin-left: 450px;
+margin-right: 50px;
+margin-top: 20px;
+}
+
+
+.upload-icon {
+    margin-left: 50px; /* ปรับระยะห่างของรูปภาพจากข้อความ */
+}
+
+h2 {
+    margin-bottom: 50px;
+    font-family: "Athiti", sans-serif;
+}
+
+
+
+#categorySelection {
+    position: relative;
+    bottom: 20px;
+    left: 520px;
+    top: -500px;
+    font-family: "Athiti", sans-serif;
+    font-size: 32px;
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column; /* เรียงข้อมูลแนวตั้ง */
+    align-items: center;
+    gap: 20px;
+    color: white;
+
+
+}
+
+.button1{
+    font-family: "Athiti", sans-serif;
+    font-size: 40px;
+    justify-items: center;
+    padding: 10px 20px;
+    width: 223px;
+    height: 83px;
+    background-color: black;
+    opacity: 0.57;
+    color: white;
+    border: 50px;
+    border-radius: 19px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.uploadedImage{
+    font-family: "Athiti", sans-serif;
+    padding: 10px 20px;
+    top: -10px;
+    margin-right: 250px;
+    background-color: #714c4c;
+    color: #9c6565;
+    border: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#uploadedImage {
+    font-family: "Bruno Ace", sans-serif;
+    margin-top: 10px;
+position: absolute;
+width: 245px;
+height: 232px;
+right:  640px;
+top: 720px;
+
+}
+
+#fileName{
+    position: relative;
+    left:  70px;
+    font-family: "Athiti", sans-serif;
+    padding: 10px 20px;
+    top: -200px;
+    margin-right: 250px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 50px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+
+}
+
+.background {
+    position: absolute;
+    width: 586px;
+    height: 376px;
+    left: 298px;
+    top: 200px;
+    border-radius: 5%;
+    z-index: 1; /* กำหนด z-index เพื่อให้พื้นหลังอยู่ด้านหลัง */
+}
+/* 
+.upload-icon {
+    margin-top: 10px;
+    position: absolute;
+    width: 345px;
+    height: 332px;
+    left: 300px;
+    top: 260px;
+    z-index: 2; 
+} */
+
+
+.nevbar .profile img{
+  width: 80px;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  justify-items: center;
+}
+
+#buttonupload{
+    position: relative;
+    font-family: "Athiti", sans-serif;
+    font-size: 35px;
+    
+    padding: 10px 20px;
+    top: -200px;
+    right: 150px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-top: 30px;
+}
+
+.button1:hover {
+    background-color: #bcbcbc;
+    transform: scale(1.05); /* ปรับขนาดลงเล็กน้อยเมื่อโฮเวอร์ */
+}
+#buttonupload:hover {
+    background-color: #bcbcbc;
+    transform: scale(1.05); /* ปรับขนาดลงเล็กน้อยเมื่อโฮเวอร์ */
+}
+
+#uploadImagetp{
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    color: white; /* เปลี่ยนสีตัวอักษรให้ขาว */
+    font-family: "Bruno Ace", sans-serif;
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+}
+
+@keyframes slideUpDown {
+    0% {
+        top: 0; /* เริ่มต้นที่ด้านบน */
+    }
+    100% {
+        top: 20px; /* ลงล่างที่ 20px */
+    }
+}
+
+#popupMessage {
+    font-family: "Bruno Ace", sans-serif;
+    color: rgb(255, 0, 0); /* เปลี่ยนสีตัวอักษรให้ขาว */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 1s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 1 วินาที */
+    transition: opacity 0.1s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.1 วินาที */
+    top: -150px; /* เปลี่ยนค่า top เพื่อปรับตำแหน่งของข้อความ */
+    right: 100%; /* กำหนดให้ตำแหน่งของข้อความอยู่ตรงกลางแนวนอน */
+    transform: translateX(40%); /* กำหนดให้ข้อความอยู่ตรงกลางแนวนอน */
+    font-size: 50px; /* ปรับขนาดตัวอักษร */
+}
+
+@keyframes slideUpDown {
+    0% {
+        top: 30px; /* เริ่มต้นที่ top: 30px */
+    }
+    100% {
+        top: 150; /* สิ้นสุดที่ top: 0 */
+    }
+}
+#popupMessage_suc{
+    font-family: "Bruno Ace", sans-serif;
+    color: rgb(60, 232, 60); /* เปลี่ยนสีตัวอักษรให้ขาว */
+    position: relative; /* กำหนดให้สามารถใช้การเคลื่อนไหวได้ */
+    animation: slideUpDown 1s infinite alternate; /* เรียกใช้ animation ชื่อ slideUpDown โดยให้เล่นเป็นลูปแบบ alternate ความยาว 1 วินาที */
+    transition: opacity 0.1s ease; /* เพิ่มเอฟเฟกต์ transition ให้มีการเปลี่ยนแปลงในความโปร่งใสเป็นเวลา 0.1 วินาที */
+    top: -250px; /* เปลี่ยนค่า top เพื่อปรับตำแหน่งของข้อความ */
+    right: 40%; /* กำหนดให้ตำแหน่งของข้อความอยู่ตรงกลางแนวนอน */
+    transform: translateX(40%); /* กำหนดให้ข้อความอยู่ตรงกลางแนวนอน */
+    font-size: 50px; /* ปรับขนาดตัวอักษร */
+}
+@keyframes slideUpDown {
+    0% {
+        top: 30px; /* เริ่มต้นที่ top: 30px */
+    }
+    100% {
+        top: 250; /* สิ้นสุดที่ top: 0 */
+    }
+}
+
+
+
+
+
+
+    
+
+    </style>
+    
+</head>
+
+<body>
+
+    <nav class="nevbar">
+        <div class="profile">
+            <li><a href="http://localhost:3000/api/profile.php?username=<?php echo urlencode($username); ?>&Id=<?php echo $Id; ?>"><img src="../Rectangle 31.png" alt=""></a></li>
+        </div>
+        <ul class="menu">
+            <li><a href="./Pictourny.html">Pictourny</a></li>
+            <li><a href="./Gallery.html">Gallery</a></li>
+            <li><a href="./top10.html">Top 10</a></li>
+            <li><a href="./upload_pic.html">Upload Pic</a></li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="" >
+            <img src="../img/search.png" alt="">
+        </div>
+        
+    </nav>
+
+    <div class="container">
+        <h2 id="uploadImagetp">  Upload Image </h2>
+
+    <form action="" method="post" enctype="multipart/form-data" id="form">
+        <div class="container-upload">
+            <img src="../upload.png" alt="Upload Image Example" class="upload-icon" name="image">
+            <input type="file" name="image" id="image" accept=".png, .jpg"/>
+        </div>
+
+        
+        
+        <!-- <img src="p.jpg" alt="Upload Image Example" class="background"> -->
+        <!-- <input type="file" id="fileInput" accept="image/*"> -->
+
+        <div id="categorySelection">
+            <label for="category">Select Category:</label>
+           
+                
+                <button id="category" class="button1" value="funny">Funny</button>
+                <button id="category" class="button1" value="food">Food</button>
+                <button id="category" class="button1" value="travel">Travel</button>
+                <button id="category" class="button1"  value="art">Art</button>
+                <button id="category" class="button1" value="cute">Cute</button>
+           
+                <div id="uploadedImage">
+                    <input type="submit" name="submit"/>
+                </div>
+        </form>
+                
+
+                   <div id="popupMessage" style="display: none;"></div>
+
+        </div>
+        <div id="popupMessage_suc" style="display: none;"></div>
+
+
+  
+        
+       
+        
+    </div>
+
+    <div class="profile_bottom_back">
+        <a href="Gallery.html">
+            <button>
+                <img src="img/back.png" alt="">
+                <p>ย้อนกลับ</p>
+            </button>
+            
+        </a>
+    </div>
+
+
+
+    <script>
+        
+        function openFileInput() {
+    document.getElementById('fileInput').click();
+}
+
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    var file = event.target.files[0]; // รับไฟล์ที่ถูกเลือก
+    var reader = new FileReader(); // สร้าง FileReader object
+
+    // // เมื่อการอ่านไฟล์เสร็จสิ้น
+    
+
+    // อ่านไฟล์เป็น Data URL
+    reader.readAsDataURL(file);
+});
+
+function uploadImage() {
+    const fileInput = document.getElementById('fileInput');
+    const category = document.getElementById('category').value;
+    const uploadedImage = document.getElementById('uploadedImage');
+    const popupMessage = document.getElementById('popupMessage');
+    const popupMessage_suc = document.getElementById('popupMessage_suc');
+
+    const file = fileInput.files[0];
+    if (file) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        var imgData = reader.result;
+        var imgElement = document.createElement('img');
+        imgElement.src = imgData;
+        imgElement.style.maxWidth = '100%';
+        imgElement.style.maxHeight = '100%';
+        imgElement.style.borderRadius = '0rem';
+        document.querySelector('.container-upload').innerHTML = '';
+        document.querySelector('.container-upload').appendChild(imgElement);
+
+        // แสดงป๊อปอัพข้อความ
+        
+        var buttons = document.querySelectorAll('#categorySelection'); // เลือกทุกปุ่มที่มี id เป็น "category"
+        buttons.forEach(function(button) {
+    button.style.display = 'none'; // ซ่อนทุกปุ่ม
+});
+        popupMessage_suc.innerHTML = '<p> Upload successful! </p>';
+        popupMessage_suc.style.display = 'block';
+
+
+
+        
+    };
+    reader.readAsDataURL(file);
+} else {
+    // แสดงป๊อปอัพข้อความ
+    popupMessage.innerHTML = '<p> Please select an image !!! </p>';
+    popupMessage.style.display = 'block';
+}
+
+}
+
+    
+    </script>
+
+</body>
+
+</html>

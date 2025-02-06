@@ -12,6 +12,17 @@
     $username = $_GET['username'];
     $name = $username;
 
+    $query_check = "SELECT * FROM images WHERE user_id = $Id AND name = 'profile'";
+    $result_check = mysqli_query($conn, $query_check);
+
+    if (mysqli_num_rows($result_check) == 0) {
+        // ถ้าไม่มีข้อมูล image ให้ทำการ INSERT รูป default
+        $query_insert = "INSERT INTO images (image, user_id, name) VALUES ('cat 1.png', $Id, 'profile')";
+        mysqli_query($conn, $query_insert);
+    }
+
+
+
         if(isset($_POST['submit'])){
             if(isset($_FILES["image"]["name"])){
                 $user_id = $Id;
@@ -50,7 +61,7 @@
                 else{
                     $newImageName = $name . " - " . date("Y.m.d."). " - " . date("h.i.sa");
                     $newImageName .= "." . $imageExtension; 
-                    $query = "UPDATE images SET image = '$newImageName' WHERE user_id = $Id";
+                    $query = "UPDATE images SET image = '$newImageName' WHERE user_id = $Id AND name = 'profile'";
                     mysqli_query($conn,$query);
                     move_uploaded_file($tmpName,'../img/' . $newImageName);
                     // echo
@@ -69,9 +80,12 @@
             
         }
 
-    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM images WHERE user_id = $Id"));
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM images WHERE user_id = $Id AND name = 'profile'"));
+    
+    
 
     $image = $result["image"];
+
     
 
     
@@ -87,21 +101,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="jquery-3.7.1.min.js"></script>
-    <link rel="icon" type="image/png" href="img/title.png">
-
-    <style>
-        #image{
-            width: 300px;
-            height: 300px;
-        }
-    </style>
+    <script src="../jquery-3.7.1.min.js"></script>
+    <link rel="icon" type="image/png" href="../img/title.png">
 </head>
 <body>
-
-
     
-    <script src="profile.js"></script>
+    <script src="../profile.js"></script>
     <nav class="nevbar">
         <div class="profile">
             <li><a href=""><img src="../Rectangle 31.png" alt=""></a></li>
@@ -110,7 +115,7 @@
             <li><a href="../Pictourny.html">Pictourny</a></li>
             <li><a href="../Gallery.html">Gallery</a></li>
             <li><a href="../top10.html">Top 10</a></li>
-            <li><a href="../upload_pic.html">Upload Pic</a></li>
+            <li><a href="http://localhost:3000/api/upload_img.php?username=<?php echo urlencode($username); ?>&Id=<?php echo $Id; ?>">Upload Pic</a></li>
         </ul>
         <div class="search">
             <input type="text" placeholder="" >
@@ -126,89 +131,24 @@
                 <div class="profile_body1_1" style="margin-top: 100px;">
                     <p><?php echo htmlspecialchars($name); ?></p>
                 </div>
-                <div>
-                    <img src="../img/<?php echo $image; ?>" alt="Uploaded Image" width="200" height="200"  onclick="openFileInput()">
+            
+                <div class="profile_body1_2">
+                    <img src="../img/<?php echo $image; ?>" alt="Uploaded Image">
+                    <input type="file" name="image" id="image" accept=".png, .jpg"/>
+                    <div><input type="submit" name="submit"/></div>
             
                 </div>
-            </div>
-            <div class="profile_body1_2">
-                <input type="file" name="image" id="image" accept=".png, .jpg"/>
-            </div>
-            <div>
-            <input type="submit" name="submit"/>
-            </div>
-            <div class="profile_body1_3">
-                <div id="pro1" class="profile_body1_3_text">จำนวนรูปภาพที่อัพ</div>
-                <div id="pro2" class="profile_body1_3_text">วันที่สมัครบัญชี</div>
-                <div id="pro3" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 1 </div>
-                <div id="pro4" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 2</div>
-                <div id="pro5" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 3</div>
-                <div id="pro6" class="profile_body1_3_text">หมวดที่อัปบ่อยที่สุด...</div>
+                <div class="profile_body1_3">
+                    <div id="pro1" class="profile_body1_3_text">จำนวนรูปภาพที่อัพ</div>
+                    <div id="pro2" class="profile_body1_3_text">วันที่สมัครบัญชี</div>
+                    <div id="pro3" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 1 </div>
+                    <div id="pro4" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 2</div>
+                    <div id="pro5" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 3</div>
+                    <div id="pro6" class="profile_body1_3_text">หมวดที่อัปบ่อยที่สุด...</div>
+                </div>
             </div>
         </form>
-        <!-- <script type="text/javascript">
-            document.getElementById("image").onchange =function(){
-                document.getElementById("form").submit();
-            }
-
-        </script> -->
-        <?php 
-                // if(isset($_FILES["image"]["name"])){
-                //     $user_id = $Id;
-                //     $image = $_POST['image'];
-
-                //     $imageName = $_FILES["image"]["name"];
-                //     $imageSize = $_FILES["image"]["size"];
-                //     $tmpName = $_FILES["image"]["tmp_name"];
-
-                //     $ValidImageExtension = ['jpg', 'jpeg', 'png'];
-                //     $imageExtension = explode('.', $imageName);
-                //     $imageExtension = strtolower(end($imageExtension));
-                //     if(!in_array($imageExtension, $ValidImageExtension)){
-                //         echo
-                //         "
-                //             <Script>
-                            
-                //             alert('invalid image Extension');
-                            
-
-                //             </Script>
-
-                //         ";
-                //     }
-
-                //     elseif($imageSize > 1200000){
-                //         echo
-                //         "
-                //             <script>
-                //                 alert('Image Size Is Too Large');
-                                
-                //             </script>
-
-                //         ";
-                //     }
-                //     else{
-                //         $newImageName = $name . " - " . date("Y.m.d."). " - " . date("h.i.sa");
-                //         $newImageName .= "." . $imageExtension; 
-                //         $query = "UPDATE images SET image = '$newImageName' WHERE user_id = $Id";
-                //         mysqli_query($conn,$query);
-                //         move_uploaded_file($tmpName,'../img/' . $newImageName);
-                //         // echo
-                //         // "
-                //         // <script>
-                //         //     window.location.reload();
-                //         // </script>
-                //         // ";
-
-                //     }
-                   
-
-                // }
-
-            
-            ?>
-        
-        </div>
+    </div>
         
         <div class="profile_body2">
             <div class="profile_body2_1">
@@ -218,51 +158,59 @@
             <div class="profile_body2_2">
                 <!-- รูป1 -->
                 <div class="ipopup" id="popup-1"> 
-                <img onclick="togglePopup()" src="img/Rectangle 25.png" alt="">
+                    <?php
+                        $res = mysqli_query($conn,"SELECT * FROM images WHERE user_id = $Id AND name = 'gallery'");
+                        while($row = mysqli_fetch_assoc($res)){
+                    ?>
+                            <img src="../img/<?php echo $row['image'] ?>" alt=""/>
+
+                        <?php } ?>
+                     
+                    
+                    <!-- 
                 
                      <div class="overlay"></div> 
                      <div class="content">
                         <div class="close-btn" onclick="togglePopup()">&times;</div>
                         <div class="img_name"><p>หอยทอด</p></div> 
-                        <img src="img/Rectangle 52_full.png" alt=""> 
+                        <img src="../img/Rectangle 52_full.png" alt=""> 
                          <div class="img_info"> 
                              <div class="info1">
-                                <img src="img/dislike 4.png" alt="">
+                                <img src="../img/dislike 4.png" alt="">
                                 <p>0</p>
                             </div>
                             <div class="info2">
-                                <img src="img/thumbs-up 4.png" alt="">
+                                <img src="../img/thumbs-up 4.png" alt="">
                                 <p>999+ k</p>
                             </div>
                             <div class="info3">
-                                <img src="img/envelope 3.png" alt="">
+                                <img src="../img/envelope 3.png" alt="">
                                 <p>103 k</p>
                             </div> 
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div> 
-                <!-- รูป2 -->
-                <div class="ipopup" id="popup-2"> 
-                    <img onclick="togglePopup2()" src="img/Rectangle 26.png" alt="">
+                <!-- <div class="ipopup" id="popup-2"> 
+                    <img onclick="togglePopup2()" src="../img/Rectangle 26.png" alt="">
                     
                          <div class="overlay"></div> 
                          <div class="content2">
                             <div class="close-btn" onclick="togglePopup2()">&times;</div>
                             <div class="img_name"><p>หอยใหญ่</p></div> 
-                            <img src="img/full_2.png" alt=""> 
+                            <img src="../img/full_2.png" alt=""> 
                              <div class="img_info"> 
                                  <div class="info1">
-                                    <img src="img/dislike 4.png" alt="">
+                                    <img src="../img/dislike 4.png" alt="">
                                     <p>0</p>
                                 </div>
                                 <div class="info2">
-                                    <img src="img/thumbs-up 4.png" alt="">
+                                    <img src="../img/thumbs-up 4.png" alt="">
                                     <p>998+ k</p>
                                 </div>
                                 <div class="info3">
-                                    <img src="img/envelope 3.png" alt="">
+                                    <img src="../img/envelope 3.png" alt="">
                                     <p>143 k</p>
                                 </div> 
                             </div>
@@ -270,25 +218,25 @@
     
     
                     </div> 
-                    <!-- รูป3 -->
+                    
                     <div class="ipopup" id="popup-3"> 
-                        <img onclick="togglePopup3()" src="img/Rectangle 43.png" alt="">
+                        <img onclick="togglePopup3()" src="../img/Rectangle 43.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content3">
                                 <div class="close-btn" onclick="togglePopup3()">&times;</div>
                                 <div class="img_name"><p>หอยใหญ่มาก</p></div> 
-                                <img src="img/full_4.png" alt=""> 
+                                <img src="../img/full_4.png" alt=""> 
                                  <div class="img_info"> 
                                      <div class="info1">
-                                        <img src="img/dislike 4.png" alt="">
+                                        <img src="../img/dislike 4.png" alt="">
                                         <p>0</p>
                                     </div>
                                     <div class="info2">
-                                        <img src="img/thumbs-up 4.png" alt="">
+                                        <img src="../img/thumbs-up 4.png" alt="">
                                         <p>999+ k</p>
                                     </div>
                                     <div class="info3">
-                                        <img src="img/envelope 3.png" alt="">
+                                        <img src="../img/envelope 3.png" alt="">
                                         <p>103 k</p>
                                     </div> 
                                 </div>
@@ -296,9 +244,9 @@
         
         
                         </div> 
-                    <!-- รูป4 -->
+                  
                     <div class="ipopup" id="popup-4"> 
-                        <img onclick="togglePopup4()" src="img/Rectangle 44.png" alt="">
+                        <img onclick="togglePopup4()" src="../img/Rectangle 44.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content4">
                                 <div class="close-btn" onclick="togglePopup4()">&times;</div>
@@ -322,9 +270,9 @@
         
         
                         </div>
-                    <!-- รูป5 -->
+                
                     <div class="ipopup" id="popup-5"> 
-                        <img onclick="togglePopup5()" src="img/Rectangle 45.png" alt="">
+                        <img onclick="togglePopup5()" src="../img/Rectangle 45.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content5">
                                 <div class="close-btn" onclick="togglePopup5()">&times;</div>
@@ -348,9 +296,9 @@
         
         
                         </div>
-                    <!-- รูป6 -->
+                 
                     <div class="ipopup" id="popup-6"> 
-                        <img onclick="togglePopup6()" src="img/Rectangle 46.png" alt="">
+                        <img onclick="togglePopup6()" src="../img/Rectangle 46.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content6">
                                 <div class="close-btn" onclick="togglePopup6()">&times;</div>
@@ -374,9 +322,9 @@
         
         
                         </div>
-                    <!-- รูป7 -->
+                    
                     <div class="ipopup" id="popup-7"> 
-                        <img onclick="togglePopup7()" src="img/Rectangle 47.png" alt="">
+                        <img onclick="togglePopup7()" src="../img/Rectangle 47.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content7">
                                 <div class="close-btn" onclick="togglePopup7()">&times;</div>
@@ -400,9 +348,9 @@
         
         
                         </div>
-                    <!-- รูป8 -->
+                    
                     <div class="ipopup" id="popup-8"> 
-                        <img onclick="togglePopup8()" src="img/Rectangle 48.png" alt="">
+                        <img onclick="togglePopup8()" src="../img/Rectangle 48.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content8">
                                 <div class="close-btn" onclick="togglePopup8()">&times;</div>
@@ -426,9 +374,9 @@
         
         
                         </div>
-                    <!-- รูป9 -->
+                   
                     <div class="ipopup" id="popup-9"> 
-                        <img onclick="togglePopup9()" src="img/Rectangle 49.png" alt="">
+                        <img onclick="togglePopup9()" src="../img/Rectangle 49.png" alt="">
                              <div class="overlay"></div> 
                              <div class="content9">
                                 <div class="close-btn" onclick="togglePopup9()">&times;</div>
@@ -451,7 +399,7 @@
                             </div>
         
         
-                        </div>                
+                        </div>                 -->
 
                 
             </div>
@@ -466,12 +414,12 @@
         <div class="profile_bottom_back">
         <a href="login.php">
             <button>
-                <img src="./logout.png" style="transform: rotate(180deg);">
+                <img src="../logout.png" style="transform: rotate(180deg);">
             </button>
         </a>
         </div>
         <div class="popup">
-            <button onclick="popup_info()"><img src="img/info.png" alt=""></button>
+            <button onclick="popup_info()"><img src="../img/info.png" alt=""></button>
             <span class="popuptext" id="iinfo_popup"><p>วิธีการใช้งาน Pictourny</p>์</span>
         </div>
     </div>

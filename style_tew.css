@@ -93,15 +93,12 @@ nav{
 }
 
 
-.profile_body{
-  margin-top: 170px;
-}
-
 
 .profile_body1 {
     display: flex;
     flex-direction: column; /* จัดเรียงองค์ประกอบลงมาในแนวดิ่ง */
-    margin-left: 100px;
+  
+    /* margin-left: 100px; */
    /* จัดให้องค์ประกอบอยู่ทางด้านซ้าย */
 }
 .profile_body1_1 p{
@@ -110,20 +107,21 @@ nav{
   color: white;
 }
 
-.profile_body1_2{
+/* .profile_body1_2{
   padding-left: 100px;
-}
+} */
 .profile_body1_2 img{
   width: 370px;
   height: 333px;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .profile_body1_3 {
     display: flex;
     flex-direction: column; /* จัดเรียงปุ่มลงมาในแนวดิ่ง */
     align-items: center; /* จัดให้อยู่ทางด้านซ้าย */
-    padding-left: 100px;
+    /* padding-left: 100px; */
     padding-top: 10px;
 }
 
@@ -168,10 +166,11 @@ nav{
   font-style: normal;
   color: white;
 }
-.profile_body2_2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns ที่มีขนาดเท่ากัน */
-    gap: 10px; /* ระยะห่างระหว่างรูป */
+
+.profile_body2 img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
 }
 
 .profile_body2_2 button{
