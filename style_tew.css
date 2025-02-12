@@ -10,6 +10,10 @@ body {
 button{
   cursor: pointer;
 }
+.main{
+  margin-left: -30%;
+  /* margin-top: 50%; */
+}
 nav{
 
     background-color: #432626;
@@ -40,6 +44,7 @@ nav{
 
 
 }
+
 
 .menu li{
     margin: 0 1rem;
@@ -98,7 +103,7 @@ nav{
     display: flex;
     flex-direction: column; /* จัดเรียงองค์ประกอบลงมาในแนวดิ่ง */
   
-    /* margin-left: 100px; */
+    margin-left: 100px;
    /* จัดให้องค์ประกอบอยู่ทางด้านซ้าย */
 }
 .profile_body1_1 p{
@@ -107,9 +112,9 @@ nav{
   color: white;
 }
 
-/* .profile_body1_2{
+.profile_body1_2{
   padding-left: 100px;
-} */
+}
 .profile_body1_2 img{
   width: 370px;
   height: 333px;
@@ -121,37 +126,35 @@ nav{
     display: flex;
     flex-direction: column; /* จัดเรียงปุ่มลงมาในแนวดิ่ง */
     align-items: center; /* จัดให้อยู่ทางด้านซ้าย */
-    /* padding-left: 100px; */
+    padding-right: 110px;
     padding-top: 10px;
 }
 
 .profile_body1_3_text {
-    flex-grow: 1; /* ให้ปุ่มขยายเต็มพื้นที่ที่ว่างของพ่อค้า */
-    border-radius: 10px; /* กำหนดมุม */
-    width: 100%; /* ให้ปุ่มมีความยาวเท่ากับพื้นที่ว่างของพ่อค้า */
-    height: 35px;
-    background-color: rgba(217, 217, 217, 0.15);
-    border: none;
-    margin-top: 8px;
-    line-height: 35px;
-    text-align: center;
-    line-height: 0px; /* ปรับสูงต่อสูงของปุ่ม */
-    vertical-align: middle; /* จัดตำแหน่งตามแนวแกนตั้ง */
-    font-family: "Athiti", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 18px;  
-    color: white;
-    display: flex;
-    justify-content: center; /* จัดให้ข้อความอยู่ตรงกลางแนวนอน */
-    align-items: center;
+  border-radius: 10px; /* กำหนดมุม */
+  height: auto;
+  background-color: rgba(217, 217, 217, 0.15);
+  border: none;
+  margin-top: 8px;
+  line-height: 35px;
+  text-align: center;
+  font-family: "Athiti", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: white;
+  display: inline-flex; /* เปลี่ยนจาก flex เป็น inline-flex เพื่อให้ขนาดปุ่มขึ้นอยู่กับเนื้อหาภายใน */
+  justify-content: center; /* จัดให้ข้อความอยู่ตรงกลางแนวนอน */
+  align-items: center; /* จัดให้ข้อความอยู่ตรงกลางแนวตั้ง */
+  padding: 0 5px; /* เพิ่มระยะห่างรอบข้อความ */
+  width: 400px; /* ปรับให้ปุ่มขยายตามขนาดข้อความ */
+  
 }
 
 
 
-
 .profile_body2{
-  padding-left: 250px;
+  margin-top: -100%;
 }
 
 .profile_body2 .contrainer{

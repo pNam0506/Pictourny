@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>sign up</title>
 </head>
 <body>
@@ -40,7 +40,7 @@
                                 <p>Registration successful</p>
                             </div> <br>";
 
-                        echo "<a href='home.php'><button class='btn'>Let's go!</button></a>";
+                        echo "<a href='login.php'><button class='btn'>Let's go!</button></a>";
                     }
                 }
             } else {
@@ -68,7 +68,7 @@
                     <input type="submit" name="submit" class="btn-create" value="Create Account">
                 </div>
                 <div class="link sign-up">
-                    <a href="./login.html">Login</a>
+                    <a href="./login.php">Login</a>
                 </div>
             </form>
             <?php } ?>

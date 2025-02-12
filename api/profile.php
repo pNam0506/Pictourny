@@ -81,10 +81,24 @@
         }
 
     $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM images WHERE user_id = $Id AND name = 'profile'"));
-    
-    
 
     $image = $result["image"];
+
+    $query_count = "SELECT COUNT(*) AS total_images FROM images WHERE user_id = $Id AND name = 'gallery'";
+    $result_count = mysqli_query($conn, $query_count);
+
+    // ดึงผลลัพธ์
+    $row_count = mysqli_fetch_assoc($result_count);
+
+    // จำนวนภาพทั้งหมด
+    $total_images = $row_count['total_images']; 
+
+    $query_date = "SELECT * FROM Sign_Up WHERE ID = $Id";
+    $result_date = mysqli_query($conn, $query_date);
+
+    $row_date = mysqli_fetch_assoc($result_date);
+
+    $date_register =  $row_date['date_regist']; 
 
     
 
@@ -93,6 +107,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,12 +115,14 @@
     <link rel="stylesheet" href="../style_tew.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="../jquery-3.7.1.min.js"></script>
     <link rel="icon" type="image/png" href="../img/title.png">
 </head>
+
 <body>
-    
+
     <script src="../profile.js"></script>
     <nav class="nevbar">
         <div class="profile">
@@ -115,58 +132,64 @@
             <li><a href="../Pictourny.html">Pictourny</a></li>
             <li><a href="../Gallery.html">Gallery</a></li>
             <li><a href="../top10.html">Top 10</a></li>
-            <li><a href="http://localhost:3000/api/upload_img.php?username=<?php echo urlencode($username); ?>&Id=<?php echo $Id; ?>">Upload Pic</a></li>
+            <li><a
+                    href="http://localhost:3000/api/upload_img.php?username=<?php echo urlencode($username); ?>&Id=<?php echo $Id; ?>">Upload
+                    Pic</a></li>
         </ul>
         <div class="search">
-            <input type="text" placeholder="" >
+            <input type="text" placeholder="">
             <img src="img/search.png" alt="">
         </div>
-        
-    </nav>
-    <div class="main">
-        <section class="profile_body">
 
-        <form action="" method="post" enctype="multipart/form-data" id="form">
-            <div class="profile_body1">
-                <div class="profile_body1_1" style="margin-top: 100px;">
-                    <p><?php echo htmlspecialchars($name); ?></p>
-                </div>
-            
-                <div class="profile_body1_2">
-                    <img src="../img/<?php echo $image; ?>" alt="Uploaded Image">
-                    <input type="file" name="image" id="image" accept=".png, .jpg"/>
-                    <div><input type="submit" name="submit"/></div>
-            
-                </div>
-                <div class="profile_body1_3">
-                    <div id="pro1" class="profile_body1_3_text">จำนวนรูปภาพที่อัพ</div>
-                    <div id="pro2" class="profile_body1_3_text">วันที่สมัครบัญชี</div>
-                    <div id="pro3" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 1 </div>
-                    <div id="pro4" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 2</div>
-                    <div id="pro5" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 3</div>
-                    <div id="pro6" class="profile_body1_3_text">หมวดที่อัปบ่อยที่สุด...</div>
-                </div>
-            </div>
-        </form>
-    </div>
-        
+    </nav>
+    <div class="contrainer">
+        <div class="main">
+            <section class="profile_body">
+
+                <form action="" method="post" enctype="multipart/form-data" id="form">
+                    <div class="profile_body1">
+                        <div class="profile_body1_1" style="margin-top: 100px; margin-left: 10%;">
+                            <p><?php echo htmlspecialchars($name); ?></p>
+                        </div>
+
+                        <div class="profile_body1_2">
+                            <img src="../img/<?php echo $image; ?>" alt="Uploaded Image">
+                            <input type="file" name="image" id="image" accept=".png, .jpg" />
+                            <div><input type="submit" name="submit" /></div>
+
+                        </div>
+                        <div class="profile_body1_3">
+                            <div class="profile_body1_3_text">จำนวนรูปภาพที่อัพ <?php echo $total_images;?></div>
+                            <div class="profile_body1_3_text">วันที่สมัครบัญชี
+                                (YYYY-MM-DD)<br><?php echo $date_register?></div>
+                            <div id="pro3" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 1 </div>
+                            <div id="pro4" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 2</div>
+                            <div id="pro5" class="profile_body1_3_text">จำนวนครั้งที่ได้อันดับที่ 3</div>
+                            <div id="pro6" class="profile_body1_3_text">หมวดที่อัปบ่อยที่สุด...</div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+
         <div class="profile_body2">
             <div class="profile_body2_1">
                 <p>ภาพของท่าน...</p>
             </div>
-            
+
             <div class="profile_body2_2">
                 <!-- รูป1 -->
-                <div class="ipopup" id="popup-1"> 
+                <div class="ipopup" id="popup-1">
                     <?php
                         $res = mysqli_query($conn,"SELECT * FROM images WHERE user_id = $Id AND name = 'gallery'");
                         while($row = mysqli_fetch_assoc($res)){
                     ?>
-                            <img src="../img/<?php echo $row['image'] ?>" alt=""/>
+                    <img src="../img/<?php echo $row['image'] ?>" alt="" />
 
-                        <?php } ?>
-                     
-                    
+                    <?php } ?>
+
+
                     <!-- 
                 
                      <div class="overlay"></div> 
@@ -191,7 +214,7 @@
                     </div> -->
 
 
-                </div> 
+                </div>
                 <!-- <div class="ipopup" id="popup-2"> 
                     <img onclick="togglePopup2()" src="../img/Rectangle 26.png" alt="">
                     
@@ -401,31 +424,36 @@
         
                         </div>                 -->
 
-                
-            </div>
+
+            <!-- </div>
             <div class="contrainer" id="contrainer">
                 <img src="" alt="">
-                <img src="img/remove.png" alt="">
-            </div>
+                <img src="../img/remove.png" alt="">
+            </div> -->
 
         </div>
-    </section>
+    </div>
+       
+    
     <div class="profile_bottom">
         <div class="profile_bottom_back">
-        <a href="login.php">
-            <button>
-                <img src="../logout.png" style="transform: rotate(180deg);">
-            </button>
-        </a>
+            <a href="login.php">
+                <button>
+                    <img src="../logout.png" style="transform: rotate(180deg);">
+                </button>
+            </a>
         </div>
         <div class="popup">
             <button onclick="popup_info()"><img src="../img/info.png" alt=""></button>
-            <span class="popuptext" id="iinfo_popup"><p>วิธีการใช้งาน Pictourny</p>์</span>
+            <span class="popuptext" id="iinfo_popup">
+                <p>วิธีการใช้งาน Pictourny</p>์
+            </span>
         </div>
     </div>
-</div>
 
-    
+
+
 
 </body>
+
 </html>
