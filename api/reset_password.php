@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
             $mail->Username = "pinmanee.business@gmail.com";
-            $mail->Password = "jvplssmpdvnaeywc";
+            $mail->Password = "yytgyqumdtnbzeck";
             $mail->isHTML(true);
 
             $mail->setFrom("pinmanee.business@gmail.com","Pictureny");
